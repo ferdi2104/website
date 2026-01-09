@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TugasIn - Platform Manajemen Tugas Kuliah</title>
+    <meta name="description"
+        content="Kelola tugas kuliah dengan mudah. Reminder deadline, kolaborasi kelompok, dan progress tracker untuk mahasiswa.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Twemoji -->
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Navigasi -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">📋</span>
+                    <span class="logo-text">TugasIn</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Beranda</a></li>
+                    <li><a href="features.html">Fitur</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="support.html">Bantuan</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="login.html" class="btn btn-secondary">Masuk</a>
+                    <a href="register.html" class="btn btn-primary">Daftar Gratis</a>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">🎯</span>
+                    <span>Platform Manajemen Tugas #1</span>
+                </div>
+                <h1 class="hero-title">
+                    Deadline Aman,<br>
+                    <span class="gradient-text">Nilai Maksimal</span>
+                </h1>
+                <p class="hero-description">
+                    Atur semua tugas kuliah dalam satu platform. Reminder otomatis, kolaborasi kelompok, dan tracking
+                    progress untuk mahasiswa yang ingin sukses akademik.
+                </p>
+                <div class="hero-actions">
+                    <a href="register.html" class="btn btn-primary btn-large">
+                        Mulai Gratis
+                        <span class="btn-icon">→</span>
+                    </a>
+                    <a href="dashboard.html" class="btn btn-glass btn-large">
+                        Dashboard
+                        <span class="btn-icon">→</span>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">25K+</div>
+                        <div class="stat-label">Mahasiswa Aktif</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100K+</div>
+                        <div class="stat-label">Tugas Selesai</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Tepat Waktu</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Masalah Section -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Masalah yang Sering Dialami</h2>
+                <p class="section-description">Sound familiar? Kamu tidak sendirian.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">😰</div>
+                    <h3 class="problem-title">Lupa Deadline</h3>
+                    <p class="problem-description">Banyak tugas dari berbagai mata kuliah, sering kelewat deadline
+                        karena lupa.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🤯</div>
+                    <h3 class="problem-title">Tugas Menumpuk</h3>
+                    <p class="problem-description">Tidak ada sistem yang terorganisir, tugas jadi overwhelm dan stres
+                        meningkat.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">😤</div>
+                    <h3 class="problem-title">Koordinasi Kelompok Susah</h3>
+                    <p class="problem-description">Tugas kelompok berantakan karena tidak ada pembagian tugas yang
+                        jelas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solusi / Fitur Overview -->
+    <section class="features-overview">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Solusi Lengkap untuk Tugasmu</h2>
+                <p class="section-description">TugasIn hadir untuk menyelesaikan semua masalah manajemen tugas</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3 class="feature-title">Reminder Otomatis</h3>
+                    <p class="feature-description">Notifikasi pintar H-3, H-1, dan hari H. Tidak akan ada lagi deadline
+                        terlewat!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3 class="feature-title">Kalender Akademik</h3>
+                    <p class="feature-description">Lihat semua deadline dalam tampilan kalender. Sync dengan Google
+                        Calendar.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">Kolaborasi Kelompok</h3>
+                    <p class="feature-description">Bagi tugas ke anggota, track progress masing-masing, dan chat dalam
+                        grup.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Progress Tracker</h3>
+                    <p class="feature-description">Visualisasi progress per mata kuliah. Lihat statistik
+                        produktivitasmu.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏷️</div>
+                    <h3 class="feature-title">Kategori & Label</h3>
+                    <p class="feature-description">Organisir tugas berdasarkan mata kuliah, prioritas, dan jenis tugas.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-title">Gamifikasi</h3>
+                    <p class="feature-description">Dapatkan poin dan badge setiap menyelesaikan tugas tepat waktu!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cara Kerja -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cara Kerja TugasIn</h2>
+                <p class="section-description">3 langkah mudah untuk produktivitas maksimal</p>
+            </div>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Tambah Tugas</h3>
+                        <p class="step-description">Input tugas dengan deadline, mata kuliah, dan prioritas. Bisa juga
+                            upload file.</p>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Terima Reminder</h3>
+                        <p class="step-description">Duduk santai, TugasIn akan ingatkan kamu sebelum deadline mendekat.
+                        </p>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Selesaikan & Rayakan</h3>
+                        <p class="step-description">Centang tugas selesai, kumpulkan poin, dan jaga streak
+                            produktivitasmu!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Kata Mereka yang Sudah Pakai</h2>
+                <p class="section-description">Ribuan mahasiswa sudah merasakan manfaatnya</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Sejak pakai TugasIn, tidak pernah lagi kena nilai minus karena telat
+                        kumpul tugas. Reminder-nya beneran helpful!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RA</div>
+                        <div class="author-info">
+                            <div class="author-name">Rizky Ananda</div>
+                            <div class="author-title">Mahasiswa Teknik Informatika</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Tugas kelompok jadi lebih terorganisir. Bisa lihat siapa yang sudah
+                        selesai dan siapa yang masih pending."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DP</div>
+                        <div class="author-info">
+                            <div class="author-name">Dina Permata</div>
+                            <div class="author-title">Mahasiswa Manajemen</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Progress tracker-nya bikin motivasi. Senang lihat grafik tugas selesai
+                        naik terus setiap minggu!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AS</div>
+                        <div class="author-info">
+                            <div class="author-name">Andi Saputra</div>
+                            <div class="author-title">Mahasiswa Akuntansi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h2 class="cta-title">Siap Jadi Mahasiswa Produktif?</h2>
+                    <p class="cta-description">Bergabung dengan 25.000+ mahasiswa yang sudah tidak pernah telat deadline
+                        lagi.</p>
+                    <div class="cta-actions">
+                        <a href="register.html" class="btn btn-primary btn-large">
+                            Daftar Gratis Sekarang
+                            <span class="btn-icon">→</span>
+                        </a>
+                        <p class="cta-note">Tanpa kartu kredit • Gratis selamanya untuk paket basic</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">📋</span>
+                        <span class="logo-text">TugasIn</span>
+                    </a>
+                    <p class="footer-description">Platform manajemen tugas kuliah untuk mahasiswa Indonesia.</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Produk</h4>
+                    <ul class="footer-links">
+                        <li><a href="features.html">Fitur</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="#">Harga</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Perusahaan</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Karir</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Bantuan</h4>
+                    <ul class="footer-links">
+                        <li><a href="support.html">Pusat Bantuan</a></li>
+                        <li><a href="support.html">Kontak</a></li>
+                        <li><a href="#">Privasi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TugasIn. Hak Cipta Dilindungi.</p>
+                <p>Dibuat untuk Universitas Mercu Buana Yogyakarta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide Icons & Twemoji
+        lucide.createIcons();
+        twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
+    </script>
+</body>
+
+</html>

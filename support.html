@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bantuan - TugasIn</title>
+    <meta name="description"
+        content="Dapatkan bantuan untuk TugasIn. Temukan jawaban pertanyaan umum atau hubungi tim support kami.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <style>
+        /* Support Page Specific Styles */
+        .quick-help {
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .help-card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            transition: all var(--transition-base);
+        }
+
+        .help-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-primary);
+        }
+
+        .help-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .help-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .help-description {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .help-link {
+            color: var(--color-primary);
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--color-surface);
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-category {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .faq-category-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-primary);
+        }
+
+        .faq-item {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-sm);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-lg);
+            background: transparent;
+            border: none;
+            color: var(--color-text);
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-icon {
+            font-size: var(--font-size-xl);
+            color: var(--color-primary);
+            transition: transform var(--transition-fast);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition-base);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+        }
+
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .contact-description {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+        }
+
+        .method-icon {
+            font-size: 1.5rem;
+        }
+
+        .method-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+        }
+
+        .method-value {
+            font-weight: 500;
+        }
+
+        .contact-form-wrapper {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigasi -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">📋</span>
+                    <span class="logo-text">TugasIn</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="features.html">Fitur</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="support.html" class="active">Bantuan</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="login.html" class="btn btn-secondary">Masuk</a>
+                    <a href="register.html" class="btn btn-primary">Daftar Gratis</a>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Bagaimana Kami Bisa<br><span class="gradient-text">Membantu?</span></h1>
+            <p class="page-description">Temukan jawaban pertanyaan umum atau hubungi tim support kami</p>
+        </div>
+    </section>
+
+    <!-- Bantuan Cepat -->
+    <section class="quick-help">
+        <div class="container">
+            <div class="help-grid">
+                <div class="help-card">
+                    <div class="help-icon">📖</div>
+                    <h3 class="help-title">Dokumentasi</h3>
+                    <p class="help-description">Panduan lengkap penggunaan TugasIn</p>
+                    <a href="#" class="help-link">Lihat Docs →</a>
+                </div>
+                <div class="help-card">
+                    <div class="help-icon">💬</div>
+                    <h3 class="help-title">Komunitas</h3>
+                    <p class="help-description">Diskusi dengan pengguna lain</p>
+                    <a href="#" class="help-link">Gabung Discord →</a>
+                </div>
+                <div class="help-card">
+                    <div class="help-icon">🎥</div>
+                    <h3 class="help-title">Video Tutorial</h3>
+                    <p class="help-description">Belajar lewat video step-by-step</p>
+                    <a href="#" class="help-link">Tonton Video →</a>
+                </div>
+                <div class="help-card">
+                    <div class="help-icon">📧</div>
+                    <h3 class="help-title">Email Support</h3>
+                    <p class="help-description">Bantuan langsung dari tim kami</p>
+                    <a href="#contact" class="help-link">Hubungi Kami →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Pertanyaan yang Sering Diajukan</h2>
+                <p class="section-description">Jawaban cepat untuk pertanyaan umum</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-category">
+                    <h3 class="faq-category-title">Memulai</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Bagaimana cara membuat akun?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Klik tombol "Daftar" di navigasi, masukkan nama, username, dan password.
+                                    Akun akan langsung aktif dan kamu akan diarahkan ke dashboard untuk mulai mengelola
+                                    tugas.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Apakah TugasIn gratis?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Ya! TugasIn sepenuhnya gratis. Semua fitur termasuk manajemen tugas tanpa batas,
+                                    kalender, reminder otomatis, dan statistik tersedia untuk semua pengguna.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Bagaimana cara menambah tugas baru?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Di dashboard, isi form "Tambah Tugas" dengan judul tugas, ketik nama mata kuliah,
+                                    pilih deadline, lalu klik tombol "+ Tambah". Tugas akan langsung muncul di daftar.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-category">
+                    <h3 class="faq-category-title">Reminder & Notifikasi</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Kapan reminder dikirim?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Secara default, reminder dikirim H-3, H-1, dan hari H deadline. Kamu bisa
+                                    mengkustomisasi jadwal reminder sesuai preferensi di pengaturan notifikasi.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Bisa terima notifikasi via WhatsApp?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Ya! Fitur notifikasi WhatsApp tersedia untuk pengguna paket Mahasiswa dan Kampus.
+                                    Hubungkan nomor WhatsApp kamu di pengaturan notifikasi untuk mengaktifkannya.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Bagaimana cara mematikan notifikasi?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Buka Pengaturan > Notifikasi. Di sana kamu bisa mengatur channel notifikasi mana yang
+                                    aktif, jadwal "Do Not Disturb", dan preferensi lainnya.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-category">
+                    <h3 class="faq-category-title">Kolaborasi Kelompok</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Bagaimana cara membuat grup tugas kelompok?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Buka halaman Tugas > klik "Buat Tugas Kelompok" > isi detail tugas > undang anggota
+                                    via email atau link. Setiap anggota akan menerima undangan untuk bergabung.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Bisa assign task ke anggota tertentu?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Ya! Di dalam tugas kelompok, kamu bisa membagi tugas menjadi sub-task dan assign ke
+                                    masing-masing anggota. Semua progress bisa dipantau secara real-time.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-category">
+                    <h3 class="faq-category-title">Akun & Privasi</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Apakah data saya aman?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Ya, kami menggunakan enkripsi standar industri untuk melindungi data kamu. Data tugas
+                                    dan informasi pribadi tidak pernah dibagikan ke pihak ketiga tanpa persetujuan.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Bagaimana cara menghapus akun?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Buka Pengaturan > Akun > Hapus Akun. Semua data akan dihapus permanen dalam 30 hari.
+                                    Kamu bisa mengunduh data terlebih dahulu sebelum menghapus akun.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Kontak -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2 class="contact-title">Masih Butuh Bantuan?</h2>
+                    <p class="contact-description">Tim support kami siap membantu. Kirim pesan dan kami akan membalas
+                        dalam 24 jam.</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">📧</div>
+                            <div class="method-content">
+                                <div class="method-label">Email</div>
+                                <div class="method-value">support@tugasin.id</div>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">💬</div>
+                            <div class="method-content">
+                                <div class="method-label">Live Chat</div>
+                                <div class="method-value">Tersedia 09:00 - 17:00 WIB</div>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">🕐</div>
+                            <div class="method-content">
+                                <div class="method-label">Waktu Respons</div>
+                                <div class="method-value">Dalam 24 jam</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Nama</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Nama lengkap kamu"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input"
+                                placeholder="email.kamu@kampus.ac.id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subjek</label>
+                            <select id="subject" name="subject" class="form-input" required>
+                                <option value="">Pilih topik</option>
+                                <option value="technical">Masalah Teknis</option>
+                                <option value="billing">Pertanyaan Pembayaran</option>
+                                <option value="feature">Permintaan Fitur</option>
+                                <option value="general">Pertanyaan Umum</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Pesan</label>
+                            <textarea id="message" name="message" class="form-input form-textarea" rows="5"
+                                placeholder="Ceritakan bagaimana kami bisa membantu..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Kirim Pesan
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">📋</span>
+                        <span class="logo-text">TugasIn</span>
+                    </a>
+                    <p class="footer-description">Platform manajemen tugas kuliah untuk mahasiswa Indonesia.</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Produk</h4>
+                    <ul class="footer-links">
+                        <li><a href="features.html">Fitur</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="#">Harga</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Perusahaan</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Karir</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Bantuan</h4>
+                    <ul class="footer-links">
+                        <li><a href="support.html">Pusat Bantuan</a></li>
+                        <li><a href="support.html">Kontak</a></li>
+                        <li><a href="#">Privasi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TugasIn. Hak Cipta Dilindungi.</p>
+                <p>Dibuat untuk Universitas Mercu Buana Yogyakarta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+        twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
+    </script>
+</body>
+
+</html>

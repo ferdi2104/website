@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitur - TugasIn</title>
+    <meta name="description" content="Jelajahi fitur lengkap TugasIn untuk manajemen tugas kuliah yang efektif.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Navigasi -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">📋</span>
+                    <span class="logo-text">TugasIn</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="features.html" class="active">Fitur</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="support.html">Bantuan</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="login.html" class="btn btn-secondary">Masuk</a>
+                    <a href="register.html" class="btn btn-primary">Daftar Gratis</a>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Fitur Lengkap untuk<br><span class="gradient-text">Produktivitas Maksimal</span></h1>
+            <p class="page-description">Semua yang kamu butuhkan untuk mengelola tugas kuliah dengan efektif</p>
+        </div>
+    </section>
+
+    <!-- Detail Fitur -->
+    <section class="detailed-features">
+        <div class="container">
+            <!-- Fitur 1 -->
+            <div class="feature-detail">
+                <div class="feature-detail-content">
+                    <div class="feature-badge">⏰ Reminder Otomatis</div>
+                    <h2 class="feature-detail-title">Tidak Ada Lagi Deadline Terlewat</h2>
+                    <p class="feature-detail-description">Sistem reminder pintar yang mengingatkan kamu pada waktu yang
+                        tepat. Terima notifikasi H-3, H-1, dan hari H via email, push notification, atau WhatsApp.</p>
+                    <ul class="feature-list">
+                        <li><span class="list-icon">✓</span> <span>Reminder customizable (H-7, H-3, H-1, D-Day)</span>
+                        </li>
+                        <li><span class="list-icon">✓</span> <span>Multi-channel notification (Email, Push,
+                                WhatsApp)</span></li>
+                        <li><span class="list-icon">✓</span> <span>Snooze dan reschedule dengan mudah</span></li>
+                        <li><span class="list-icon">✓</span> <span>Daily digest email setiap pagi</span></li>
+                    </ul>
+                </div>
+                <div class="feature-detail-visual">
+                    <div class="visual-card">
+                        <div class="visual-header">
+                            <div class="visual-title">🔔 Reminder Aktif</div>
+                        </div>
+                        <div class="reminder-list">
+                            <div class="reminder-item urgent">
+                                <div class="reminder-icon">🔴</div>
+                                <div class="reminder-info">
+                                    <div class="reminder-title">Essay Ekonomi Makro</div>
+                                    <div class="reminder-due">Deadline: Besok, 23:59</div>
+                                </div>
+                            </div>
+                            <div class="reminder-item warning">
+                                <div class="reminder-icon">🟡</div>
+                                <div class="reminder-info">
+                                    <div class="reminder-title">Laporan Praktikum Fisika</div>
+                                    <div class="reminder-due">Deadline: 3 hari lagi</div>
+                                </div>
+                            </div>
+                            <div class="reminder-item normal">
+                                <div class="reminder-icon">🟢</div>
+                                <div class="reminder-info">
+                                    <div class="reminder-title">Presentasi Kelompok</div>
+                                    <div class="reminder-due">Deadline: Minggu depan</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fitur 2 -->
+            <div class="feature-detail reverse">
+                <div class="feature-detail-content">
+                    <div class="feature-badge">📅 Kalender Akademik</div>
+                    <h2 class="feature-detail-title">Visualisasi Deadline dalam Kalender</h2>
+                    <p class="feature-detail-description">Lihat semua tugas dan deadline dalam tampilan kalender yang
+                        intuitif. Sync otomatis dengan Google Calendar, Outlook, dan Apple Calendar.</p>
+                    <ul class="feature-list">
+                        <li><span class="list-icon">✓</span> <span>Tampilan harian, mingguan, dan bulanan</span></li>
+                        <li><span class="list-icon">✓</span> <span>Color-coded berdasarkan mata kuliah</span></li>
+                        <li><span class="list-icon">✓</span> <span>Sync dengan kalender eksternal</span></li>
+                        <li><span class="list-icon">✓</span> <span>Drag & drop untuk reschedule</span></li>
+                    </ul>
+                </div>
+                <div class="feature-detail-visual">
+                    <div class="visual-card">
+                        <div class="visual-header">
+                            <div class="visual-title">📅 Januari 2026</div>
+                        </div>
+                        <div class="mini-calendar">
+                            <div class="calendar-week-days">
+                                <span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span><span>Min</span>
+                            </div>
+                            <div class="calendar-grid-mini">
+                                <span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                                <span>6</span><span>7</span><span>8</span><span class="has-task">9</span><span
+                                    class="has-task deadline">10</span><span>11</span><span>12</span>
+                                <span>13</span><span
+                                    class="has-task">14</span><span>15</span><span>16</span><span>17</span><span
+                                    class="has-task deadline">18</span><span>19</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fitur 3 -->
+            <div class="feature-detail">
+                <div class="feature-detail-content">
+                    <div class="feature-badge">👥 Kolaborasi Kelompok</div>
+                    <h2 class="feature-detail-title">Tugas Kelompok Jadi Lebih Mudah</h2>
+                    <p class="feature-detail-description">Buat grup untuk tugas kelompok, assign task ke setiap anggota,
+                        dan pantau progress masing-masing. Tidak ada lagi drama "siapa yang belum selesai".</p>
+                    <ul class="feature-list">
+                        <li><span class="list-icon">✓</span> <span>Pembagian tugas ke anggota</span></li>
+                        <li><span class="list-icon">✓</span> <span>Real-time progress tracking</span></li>
+                        <li><span class="list-icon">✓</span> <span>Chat grup terintegrasi</span></li>
+                        <li><span class="list-icon">✓</span> <span>File sharing langsung di platform</span></li>
+                    </ul>
+                </div>
+                <div class="feature-detail-visual">
+                    <div class="visual-card">
+                        <div class="visual-header">
+                            <div class="visual-title">👥 Tugas Kelompok: Makalah Ekonomi</div>
+                        </div>
+                        <div class="team-progress">
+                            <div class="team-member">
+                                <div class="member-avatar" style="background: #3b82f6;">RA</div>
+                                <div class="member-info">
+                                    <div class="member-name">Rizky - Bab 1</div>
+                                    <div class="member-progress-bar">
+                                        <div class="member-progress-fill" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                                <span class="member-status done">✓ Selesai</span>
+                            </div>
+                            <div class="team-member">
+                                <div class="member-avatar" style="background: #06b6d4;">DP</div>
+                                <div class="member-info">
+                                    <div class="member-name">Dina - Bab 2</div>
+                                    <div class="member-progress-bar">
+                                        <div class="member-progress-fill" style="width: 75%;"></div>
+                                    </div>
+                                </div>
+                                <span class="member-status progress">75%</span>
+                            </div>
+                            <div class="team-member">
+                                <div class="member-avatar" style="background: #f59e0b;">AS</div>
+                                <div class="member-info">
+                                    <div class="member-name">Andi - Bab 3</div>
+                                    <div class="member-progress-bar">
+                                        <div class="member-progress-fill" style="width: 30%;"></div>
+                                    </div>
+                                </div>
+                                <span class="member-status progress">30%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fitur 4 -->
+            <div class="feature-detail reverse">
+                <div class="feature-detail-content">
+                    <div class="feature-badge">📊 Progress Tracker</div>
+                    <h2 class="feature-detail-title">Analytics untuk Produktivitasmu</h2>
+                    <p class="feature-detail-description">Dashboard yang menampilkan statistik tugas per mata kuliah,
+                        streak produktivitas, dan insight untuk mengoptimalkan cara belajarmu.</p>
+                    <ul class="feature-list">
+                        <li><span class="list-icon">✓</span> <span>Statistik tugas selesai per mata kuliah</span></li>
+                        <li><span class="list-icon">✓</span> <span>Grafik produktivitas mingguan</span></li>
+                        <li><span class="list-icon">✓</span> <span>Streak tracker harian</span></li>
+                        <li><span class="list-icon">✓</span> <span>Perbandingan dengan rata-rata pengguna</span></li>
+                    </ul>
+                </div>
+                <div class="feature-detail-visual">
+                    <div class="visual-card">
+                        <div class="visual-header">
+                            <div class="visual-title">📊 Statistikmu Bulan Ini</div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <div class="stat-value">24</div>
+                                <div class="stat-label">Tugas Selesai</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value">95%</div>
+                                <div class="stat-label">Tepat Waktu</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">Hari Streak</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value">#5</div>
+                                <div class="stat-label">Leaderboard</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian Harga -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Pilih Paket yang Cocok</h2>
+                <p class="section-description">Mulai gratis, upgrade kapan saja</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Gratis</h3>
+                        <div class="pricing-price">
+                            <span class="price-currency">Rp</span>
+                            <span class="price-amount">0</span>
+                            <span class="price-period">/bulan</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="list-icon">✓</span> Hingga 10 tugas aktif</li>
+                        <li><span class="list-icon">✓</span> Reminder dasar (email)</li>
+                        <li><span class="list-icon">✓</span> 1 grup kolaborasi</li>
+                        <li><span class="list-icon">✓</span> Kalender sederhana</li>
+                    </ul>
+                    <button class="btn btn-secondary btn-block">Mulai Gratis</button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Paling Populer</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Mahasiswa</h3>
+                        <div class="pricing-price">
+                            <span class="price-currency">Rp</span>
+                            <span class="price-amount">29.000</span>
+                            <span class="price-period">/bulan</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="list-icon">✓</span> Tugas tanpa batas</li>
+                        <li><span class="list-icon">✓</span> Reminder multi-channel</li>
+                        <li><span class="list-icon">✓</span> 10 grup kolaborasi</li>
+                        <li><span class="list-icon">✓</span> Sync kalender eksternal</li>
+                        <li><span class="list-icon">✓</span> Analytics lengkap</li>
+                        <li><span class="list-icon">✓</span> Gamifikasi & badge</li>
+                    </ul>
+                    <button class="btn btn-primary btn-block">Coba 14 Hari Gratis</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Kampus</h3>
+                        <div class="pricing-price">
+                            <span class="price-currency">Rp</span>
+                            <span class="price-amount">199.000</span>
+                            <span class="price-period">/bulan</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="list-icon">✓</span> Semua fitur Mahasiswa</li>
+                        <li><span class="list-icon">✓</span> Hingga 50 mahasiswa</li>
+                        <li><span class="list-icon">✓</span> Dashboard admin</li>
+                        <li><span class="list-icon">✓</span> Integrasi LMS</li>
+                        <li><span class="list-icon">✓</span> Custom branding</li>
+                        <li><span class="list-icon">✓</span> Support prioritas</li>
+                    </ul>
+                    <button class="btn btn-secondary btn-block">Hubungi Kami</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h2 class="cta-title">Mulai Kelola Tugasmu Sekarang</h2>
+                    <p class="cta-description">Bergabung dengan 25.000+ mahasiswa produktif di Indonesia.</p>
+                    <div class="cta-actions">
+                        <button class="btn btn-primary btn-large">
+                            Daftar Gratis
+                            <span class="btn-icon">→</span>
+                        </button>
+                        <p class="cta-note">Tanpa kartu kredit • Setup 2 menit</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">📋</span>
+                        <span class="logo-text">TugasIn</span>
+                    </a>
+                    <p class="footer-description">Platform manajemen tugas kuliah untuk mahasiswa Indonesia.</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Produk</h4>
+                    <ul class="footer-links">
+                        <li><a href="features.html">Fitur</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="#">Harga</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Perusahaan</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Karir</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Bantuan</h4>
+                    <ul class="footer-links">
+                        <li><a href="support.html">Pusat Bantuan</a></li>
+                        <li><a href="support.html">Kontak</a></li>
+                        <li><a href="#">Privasi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TugasIn. Hak Cipta Dilindungi.</p>
+                <p>Dibuat untuk Universitas Mercu Buana Yogyakarta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <style>
+        /* Features Page Specific Styles */
+        .detailed-features {
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .feature-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: center;
+            margin-bottom: var(--spacing-3xl);
+            padding-bottom: var(--spacing-3xl);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .feature-detail:last-child {
+            border-bottom: none;
+        }
+
+        .feature-detail.reverse {
+            direction: rtl;
+        }
+
+        .feature-detail.reverse>* {
+            direction: ltr;
+        }
+
+        .feature-badge {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .feature-detail-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .feature-detail-description {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .list-icon {
+            color: var(--color-success);
+            font-weight: 600;
+        }
+
+        .feature-detail-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .visual-card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+        }
+
+        .visual-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .visual-title {
+            font-weight: 600;
+        }
+
+        /* Reminder List */
+        .reminder-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .reminder-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .reminder-item.urgent {
+            border-left: 3px solid var(--color-danger);
+        }
+
+        .reminder-item.warning {
+            border-left: 3px solid var(--color-warning);
+        }
+
+        .reminder-item.normal {
+            border-left: 3px solid var(--color-success);
+        }
+
+        .reminder-title {
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+        }
+
+        .reminder-due {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        /* Mini Calendar */
+        .mini-calendar {
+            padding: var(--spacing-md);
+        }
+
+        .calendar-week-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .calendar-grid-mini {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            gap: 2px;
+            font-size: var(--font-size-sm);
+        }
+
+        .calendar-grid-mini span {
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-sm);
+        }
+
+        .calendar-grid-mini .has-task {
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .calendar-grid-mini .deadline {
+            background: rgba(245, 158, 11, 0.3);
+            font-weight: 600;
+        }
+
+        /* Team Progress */
+        .team-progress {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .team-member {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .member-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            color: white;
+        }
+
+        .member-info {
+            flex: 1;
+        }
+
+        .member-name {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .member-progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .member-progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+        }
+
+        .member-status {
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+        }
+
+        .member-status.done {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--color-success);
+        }
+
+        .member-status.progress {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--color-primary);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: var(--color-surface);
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .pricing-card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            position: relative;
+            transition: all var(--transition-base);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .pricing-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .pricing-price {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 2px;
+        }
+
+        .price-currency {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+        }
+
+        .price-amount {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+        }
+
+        .price-period {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) 0;
+            font-size: var(--font-size-sm);
+        }
+
+        @media (max-width: 768px) {
+
+            .feature-detail,
+            .feature-detail.reverse {
+                grid-template-columns: 1fr;
+                direction: ltr;
+            }
+
+            .feature-detail-visual {
+                order: -1;
+            }
+        }
+    </style>
+    <script>
+        lucide.createIcons();
+        twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
+    </script>
+</body>
+
+</html>

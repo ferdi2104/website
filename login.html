@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk - TugasIn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <style>
+        .auth-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+            padding: var(--spacing-xl);
+        }
+
+        .auth-card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(20px);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .auth-logo {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .auth-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .auth-subtitle {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .auth-form .form-input {
+            padding: var(--spacing-md);
+            font-size: var(--font-size-base);
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .auth-footer a {
+            color: var(--color-primary);
+            font-weight: 500;
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            color: #ef4444;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .back-link {
+            position: absolute;
+            top: var(--spacing-xl);
+            left: var(--spacing-xl);
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .back-link:hover {
+            color: var(--color-text);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-page">
+        <a href="index.html" class="back-link">← Kembali</a>
+
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">📋</div>
+                <h1 class="auth-title">Masuk ke TugasIn</h1>
+                <p class="auth-subtitle">Masukkan username dan password</p>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" class="form-input" placeholder="Masukkan username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="Masukkan password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Belum punya akun? <a href="register.html">Daftar</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        // Redirect if already logged in
+        if (AuthService.isLoggedIn()) {
+            window.location.href = 'dashboard.html';
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            const result = AuthService.login(username, password);
+
+            if (result.success) {
+                window.location.href = 'dashboard.html';
+            } else {
+                errorMessage.textContent = result.message;
+                errorMessage.classList.add('show');
+            }
+        });
+
+        // Init icons
+        lucide.createIcons();
+        twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TugasIn</title>
+    <meta name="description" content="Dashboard TugasIn - Kelola tugas kuliah kamu.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Twemoji for consistent emoji -->
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <style>
+        /* Dashboard Layout */
+        .dashboard {
+            min-height: 100vh;
+            background: var(--color-background);
+            padding-top: 80px;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-xl);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        .welcome-section h1 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .welcome-section p {
+            color: var(--color-text-secondary);
+        }
+
+        .user-dropdown {
+            position: relative;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: var(--spacing-sm);
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-sm);
+            min-width: 200px;
+            display: none;
+            z-index: 100;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: background var(--transition-fast);
+            font-size: var(--font-size-sm);
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-item.danger {
+            color: var(--color-danger);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: var(--color-border);
+            margin: var(--spacing-sm) 0;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .stat-card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .stat-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .stat-icon.primary {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .stat-icon.success {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .stat-icon.warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .stat-icon.danger {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        /* Lucide Icons in titles */
+        .card-title svg {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+
+        /* Twemoji styling */
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+        }
+
+        .stat-info .stat-value {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+        }
+
+        .stat-info .stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        /* Main Content Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--spacing-xl);
+        }
+
+        @media (max-width: 1100px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .content-card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .card-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        /* Task Form */
+        .add-task-form {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        @media (max-width: 768px) {
+            .add-task-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .add-task-form .form-input {
+            padding: var(--spacing-sm) var(--spacing-md);
+        }
+
+        /* Task List */
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-lg);
+            border-left: 3px solid var(--color-primary);
+            transition: all var(--transition-fast);
+        }
+
+        .task-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .task-item.completed {
+            opacity: 0.6;
+            border-left-color: var(--color-success);
+        }
+
+        .task-item.completed .task-title {
+            text-decoration: line-through;
+        }
+
+        .task-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--color-primary);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+        }
+
+        .task-checkbox:hover {
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .task-checkbox.checked {
+            background: var(--color-success);
+            border-color: var(--color-success);
+        }
+
+        .task-checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+        }
+
+        .task-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .task-meta {
+            display: flex;
+            gap: var(--spacing-md);
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            flex-wrap: wrap;
+        }
+
+        .task-subject {
+            background: rgba(59, 130, 246, 0.2);
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+            color: var(--color-primary);
+        }
+
+        .task-priority {
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+        }
+
+        .priority-tinggi {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .priority-sedang {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .priority-rendah {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .task-delete {
+            background: none;
+            border: none;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            padding: var(--spacing-xs);
+            opacity: 0;
+            transition: all var(--transition-fast);
+        }
+
+        .task-item:hover .task-delete {
+            opacity: 1;
+        }
+
+        .task-delete:hover {
+            color: var(--color-danger);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-2xl);
+            color: var(--color-text-muted);
+        }
+
+        .empty-state .empty-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Calendar Widget */
+        .calendar-widget {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .calendar-header h3 {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+        }
+
+        .calendar-nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            color: var(--color-text);
+            cursor: pointer;
+            transition: background var(--transition-fast);
+        }
+
+        .calendar-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            padding: var(--spacing-sm);
+            background: rgba(0, 0, 0, 0.2);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            color: var(--color-text-muted);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            padding: var(--spacing-sm);
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-size: var(--font-size-sm);
+            position: relative;
+        }
+
+        .calendar-day:hover {
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .calendar-day.today {
+            background: var(--gradient-primary);
+            font-weight: 600;
+        }
+
+        .calendar-day.has-task::after {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 3px;
+        }
+
+        .calendar-day.other-month {
+            color: var(--color-text-muted);
+            opacity: 0.5;
+        }
+
+        /* Reminder List */
+        .reminder-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .reminder-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .reminder-item.urgent {
+            border-left: 3px solid var(--color-danger);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .reminder-item.warning {
+            border-left: 3px solid var(--color-warning);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .reminder-item.normal {
+            border-left: 3px solid var(--color-success);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .reminder-icon {
+            font-size: 1.3rem;
+        }
+
+        .reminder-content {
+            flex: 1;
+        }
+
+        .reminder-title {
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            margin-bottom: 2px;
+        }
+
+        .reminder-due {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        .reminder-dismiss {
+            background: none;
+            border: none;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            font-size: 1rem;
+            opacity: 0;
+            transition: all var(--transition-fast);
+        }
+
+        .reminder-item:hover .reminder-dismiss {
+            opacity: 1;
+        }
+
+        /* Upcoming Tasks */
+        .upcoming-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .upcoming-item:last-child {
+            border-bottom: none;
+        }
+
+        .upcoming-date {
+            text-align: center;
+            min-width: 45px;
+        }
+
+        .upcoming-day {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .upcoming-month {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        .upcoming-info {
+            flex: 1;
+        }
+
+        .upcoming-task-title {
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+        }
+
+        .upcoming-subject {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        /* Progress */
+        .progress-section {
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+            font-size: var(--font-size-sm);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            transition: width var(--transition-base);
+        }
+
+        /* Success Toast */
+        .toast {
+            position: fixed;
+            bottom: var(--spacing-xl);
+            right: var(--spacing-xl);
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md) var(--spacing-lg);
+            display: none;
+            align-items: center;
+            gap: var(--spacing-md);
+            z-index: 1000;
+            animation: slideUp 0.3s ease;
+        }
+
+        .toast.show {
+            display: flex;
+        }
+
+        .toast.success {
+            border-color: var(--color-success);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigasi -->
+    <nav class="navbar scrolled">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">📋</span>
+                    <span class="logo-text">TugasIn</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                    <li><a href="features.html">Fitur</a></li>
+                    <li><a href="support.html">Bantuan</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <div class="user-dropdown">
+                        <div class="user-avatar" id="userAvatar" onclick="toggleDropdown()">U</div>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <div class="dropdown-item" id="userInfo">
+                                <span>👤</span>
+                                <span id="userName">User</span>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-item" onclick="window.location.href='features.html'">
+                                <span>⚙️</span>
+                                <span>Pengaturan</span>
+                            </div>
+                            <div class="dropdown-item danger" onclick="handleLogout()">
+                                <span>🚪</span>
+                                <span>Keluar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard">
+        <div class="dashboard-container">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <div class="welcome-section">
+                    <h1>Selamat datang, <span id="welcomeName">User</span>! 👋</h1>
+                    <p>Ayo produktif hari ini. Kamu punya <strong id="pendingCount">0</strong> tugas yang harus
+                        dikerjakan.</p>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon primary"><i data-lucide="clipboard-list"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="totalTasks">0</div>
+                        <div class="stat-label">Total Tugas</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon success"><i data-lucide="check-circle-2"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="completedTasks">0</div>
+                        <div class="stat-label">Selesai</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon warning"><i data-lucide="clock"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="pendingTasks">0</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon danger"><i data-lucide="flame"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="streakDays">0</div>
+                        <div class="stat-label">Hari Streak</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Grid -->
+            <div class="dashboard-grid">
+                <!-- Left: Tasks -->
+                <div class="main-content">
+                    <!-- Task Management -->
+                    <div class="content-card">
+                        <div class="card-header">
+                            <h2 class="card-title"><i data-lucide="list-todo"></i> Daftar Tugas</h2>
+                            <span style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Klik checkbox
+                                untuk menyelesaikan</span>
+                        </div>
+
+                        <!-- Add Task Form -->
+                        <form class="add-task-form" id="addTaskForm">
+                            <input type="text" id="taskTitle" class="form-input" placeholder="Judul tugas..." required>
+                            <input type="text" id="taskSubject" class="form-input" placeholder="Mata Kuliah..."
+                                required>
+                            <input type="date" id="taskDeadline" class="form-input" required>
+                            <button type="submit" class="btn btn-primary">+ Tambah</button>
+                        </form>
+
+                        <!-- Task List -->
+                        <div class="task-list" id="taskList">
+                            <div class="empty-state" id="emptyState">
+                                <div class="empty-icon">📭</div>
+                                <p>Belum ada tugas. Tambah tugas pertamamu!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reminder Section -->
+                    <div class="content-card">
+                        <div class="card-header">
+                            <h2 class="card-title"><i data-lucide="bell"></i> Reminder</h2>
+                        </div>
+                        <div class="reminder-list" id="reminderList">
+                            <!-- Will be populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Sidebar -->
+                <div class="sidebar">
+                    <!-- Calendar -->
+                    <div class="content-card">
+                        <div class="card-header">
+                            <h2 class="card-title"><i data-lucide="calendar"></i> Kalender</h2>
+                        </div>
+                        <div class="calendar-widget">
+                            <div class="calendar-header">
+                                <button class="calendar-nav-btn" onclick="changeMonth(-1)">←</button>
+                                <h3 id="calendarMonth">Januari 2026</h3>
+                                <button class="calendar-nav-btn" onclick="changeMonth(1)">→</button>
+                            </div>
+                            <div class="calendar-days">
+                                <span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span><span>Min</span>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Will be populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Deadlines -->
+                    <div class="content-card">
+                        <div class="card-header">
+                            <h2 class="card-title"><i data-lucide="pin"></i> Deadline Terdekat</h2>
+                        </div>
+                        <div id="upcomingList">
+                            <!-- Will be populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Progress -->
+                    <div class="content-card">
+                        <div class="card-header">
+                            <h2 class="card-title"><i data-lucide="bar-chart-3"></i> Progress</h2>
+                        </div>
+                        <div class="progress-section" style="border: none; padding: 0; margin: 0;">
+                            <div class="progress-header">
+                                <span>Tugas Selesai</span>
+                                <span id="progressPercent">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toastIcon">✅</span>
+        <span id="toastMessage">Berhasil!</span>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        // Check authentication
+        if (!AuthService.isLoggedIn()) {
+            window.location.href = 'login.html';
+        }
+
+        const currentUser = AuthService.getCurrentUser();
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+
+        // Demo tasks if none exist
+        const demoTasks = [
+            { id: 1, title: 'Quiz Bahasa Inggris', subject: 'Bahasa Inggris', deadline: getTodayDate(-1), priority: 'rendah', completed: true },
+            { id: 2, title: 'Latihan Soal Matematika', subject: 'Matematika', deadline: getTodayDate(0), priority: 'sedang', completed: true },
+            { id: 3, title: 'Essay Ekonomi Makro', subject: 'Ekonomi Makro', deadline: getTodayDate(1), priority: 'tinggi', completed: false },
+            { id: 4, title: 'Laporan Praktikum Fisika', subject: 'Fisika Dasar', deadline: getTodayDate(4), priority: 'sedang', completed: false },
+            { id: 5, title: 'Project Website Portfolio', subject: 'Pemrograman Web', deadline: getTodayDate(8), priority: 'tinggi', completed: false }
+        ];
+
+        function getTodayDate(daysOffset = 0) {
+            const date = new Date();
+            date.setDate(date.getDate() + daysOffset);
+            return date.toISOString().split('T')[0];
+        }
+
+        // Initialize
+        function initDashboard() {
+            if (currentUser) {
+                document.getElementById('welcomeName').textContent = currentUser.name.split(' ')[0];
+                document.getElementById('userName').textContent = currentUser.name;
+                document.getElementById('userAvatar').textContent = currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
+            }
+
+            // Set default deadline to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('taskDeadline').valueAsDate = tomorrow;
+
+            // Initialize demo tasks if empty
+            let tasks = TaskService.getTasks();
+            if (tasks.length === 0) {
+                const allTasks = localStorage.getItem('tugasin_tasks');
+                const existingTasks = allTasks ? JSON.parse(allTasks) : [];
+                demoTasks.forEach(task => {
+                    existingTasks.push({ ...task, userId: currentUser.id });
+                });
+                localStorage.setItem('tugasin_tasks', JSON.stringify(existingTasks));
+            }
+
+            renderTasks();
+            renderReminders();
+            renderCalendar();
+            renderUpcoming();
+            updateStats();
+
+            // Initialize Lucide Icons
+            lucide.createIcons();
+
+            // Parse emoji with Twemoji for consistent look
+            twemoji.parse(document.body, {
+                folder: 'svg',
+                ext: '.svg'
+            });
+        }
+
+        // Render tasks
+        function renderTasks() {
+            const tasks = TaskService.getTasks();
+            const taskList = document.getElementById('taskList');
+
+            if (tasks.length === 0) {
+                taskList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <p>Belum ada tugas. Tambah tugas pertamamu!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            taskList.innerHTML = '';
+
+            // Sort by deadline
+            tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+
+            tasks.forEach(task => {
+                const deadlineDate = new Date(task.deadline);
+                const formattedDate = deadlineDate.toLocaleDateString('id-ID', {
+                    weekday: 'short',
+                    day: 'numeric',
+                    month: 'short'
+                });
+
+                const taskEl = document.createElement('div');
+                taskEl.className = `task-item ${task.completed ? 'completed' : ''}`;
+                taskEl.innerHTML = `
+                    <div class="task-checkbox ${task.completed ? 'checked' : ''}" onclick="toggleTask(${task.id})"></div>
+                    <div class="task-info">
+                        <div class="task-title">${task.title}</div>
+                        <div class="task-meta">
+                            <span class="task-subject">${task.subject}</span>
+                            <span>📅 ${formattedDate}</span>
+                        </div>
+                    </div>
+                    <span class="task-priority priority-${task.priority}">${task.priority}</span>
+                    <button class="task-delete" onclick="event.stopPropagation(); deleteTask(${task.id})">🗑️</button>
+                `;
+                taskList.appendChild(taskEl);
+            });
+        }
+
+        // Render reminders
+        function renderReminders() {
+            const tasks = TaskService.getTasks().filter(t => !t.completed);
+            const reminderList = document.getElementById('reminderList');
+            reminderList.innerHTML = '';
+
+            if (tasks.length === 0) {
+                reminderList.innerHTML = '<div style="text-align: center; color: var(--color-text-muted); padding: var(--spacing-lg);">✅ Tidak ada reminder. Semua tugas selesai!</div>';
+                return;
+            }
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline)).slice(0, 5).forEach(task => {
+                const deadline = new Date(task.deadline);
+                const diffDays = Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
+
+                let urgency, icon, dueText;
+                if (diffDays <= 1) {
+                    urgency = 'urgent';
+                    icon = '🔴';
+                    dueText = diffDays === 0 ? '⚠️ Deadline HARI INI!' : '⚠️ Deadline BESOK!';
+                } else if (diffDays <= 3) {
+                    urgency = 'warning';
+                    icon = '🟡';
+                    dueText = `📅 ${diffDays} hari lagi`;
+                } else {
+                    urgency = 'normal';
+                    icon = '🟢';
+                    dueText = `📅 ${diffDays} hari lagi`;
+                }
+
+                const reminderEl = document.createElement('div');
+                reminderEl.className = `reminder-item ${urgency}`;
+                reminderEl.innerHTML = `
+                    <div class="reminder-icon">${icon}</div>
+                    <div class="reminder-content">
+                        <div class="reminder-title">${task.title}</div>
+                        <div class="reminder-due">${dueText} - ${task.subject}</div>
+                    </div>
+                    <button class="reminder-dismiss" onclick="this.parentElement.remove()">✕</button>
+                `;
+                reminderList.appendChild(reminderEl);
+            });
+        }
+
+        // Render calendar
+        function renderCalendar() {
+            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            document.getElementById('calendarMonth').textContent = `${months[currentMonth]} ${currentYear}`;
+
+            const calendarGrid = document.getElementById('calendarGrid');
+            calendarGrid.innerHTML = '';
+
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            const lastDay = new Date(currentYear, currentMonth + 1, 0);
+            const startingDay = (firstDay.getDay() + 6) % 7; // Monday start
+
+            const today = new Date();
+            const tasks = TaskService.getTasks();
+            const taskDates = tasks.map(t => t.deadline);
+
+            // Previous month days
+            const prevMonthLastDay = new Date(currentYear, currentMonth, 0).getDate();
+            for (let i = startingDay - 1; i >= 0; i--) {
+                const dayEl = document.createElement('span');
+                dayEl.className = 'calendar-day other-month';
+                dayEl.textContent = prevMonthLastDay - i;
+                calendarGrid.appendChild(dayEl);
+            }
+
+            // Current month days
+            for (let i = 1; i <= lastDay.getDate(); i++) {
+                const dayEl = document.createElement('span');
+                const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+
+                let classes = 'calendar-day';
+                if (i === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
+                    classes += ' today';
+                }
+                if (taskDates.includes(dateStr)) {
+                    classes += ' has-task';
+                }
+
+                dayEl.className = classes;
+                dayEl.textContent = i;
+                calendarGrid.appendChild(dayEl);
+            }
+
+            // Next month days
+            const remainingDays = 42 - calendarGrid.children.length;
+            for (let i = 1; i <= remainingDays; i++) {
+                const dayEl = document.createElement('span');
+                dayEl.className = 'calendar-day other-month';
+                dayEl.textContent = i;
+                calendarGrid.appendChild(dayEl);
+            }
+        }
+
+        function changeMonth(offset) {
+            currentMonth += offset;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
+        }
+
+        // Render upcoming deadlines
+        function renderUpcoming() {
+            const tasks = TaskService.getTasks().filter(t => !t.completed);
+            const upcomingList = document.getElementById('upcomingList');
+            upcomingList.innerHTML = '';
+
+            if (tasks.length === 0) {
+                upcomingList.innerHTML = '<div style="text-align: center; color: var(--color-text-muted); padding: var(--spacing-lg);">Tidak ada deadline terdekat</div>';
+                return;
+            }
+
+            tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline)).slice(0, 4).forEach(task => {
+                const deadline = new Date(task.deadline);
+                const day = deadline.getDate();
+                const month = deadline.toLocaleDateString('id-ID', { month: 'short' });
+
+                const upcomingEl = document.createElement('div');
+                upcomingEl.className = 'upcoming-item';
+                upcomingEl.innerHTML = `
+                    <div class="upcoming-date">
+                        <div class="upcoming-day">${day}</div>
+                        <div class="upcoming-month">${month}</div>
+                    </div>
+                    <div class="upcoming-info">
+                        <div class="upcoming-task-title">${task.title}</div>
+                        <div class="upcoming-subject">${task.subject}</div>
+                    </div>
+                `;
+                upcomingList.appendChild(upcomingEl);
+            });
+        }
+
+        // Update statistics
+        function updateStats() {
+            const stats = TaskService.getStats();
+
+            document.getElementById('totalTasks').textContent = stats.total;
+            document.getElementById('completedTasks').textContent = stats.completed;
+            document.getElementById('pendingTasks').textContent = stats.pending;
+            document.getElementById('pendingCount').textContent = stats.pending;
+            document.getElementById('progressPercent').textContent = stats.percentage + '%';
+            document.getElementById('progressFill').style.width = stats.percentage + '%';
+
+            // Streak (demo: calculate based on completed tasks)
+            const streak = Math.min(stats.completed, 14);
+            document.getElementById('streakDays').textContent = streak;
+        }
+
+        // Add task
+        document.getElementById('addTaskForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const taskData = {
+                title: document.getElementById('taskTitle').value,
+                subject: document.getElementById('taskSubject').value,
+                deadline: document.getElementById('taskDeadline').value,
+                priority: 'sedang'
+            };
+
+            const result = TaskService.addTask(taskData);
+
+            if (result.success) {
+                this.reset();
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                document.getElementById('taskDeadline').valueAsDate = tomorrow;
+
+                renderTasks();
+                renderReminders();
+                renderCalendar();
+                renderUpcoming();
+                updateStats();
+                showToast('✅', 'Tugas berhasil ditambahkan!');
+            }
+        });
+
+        // Toggle task
+        function toggleTask(taskId) {
+            TaskService.toggleTask(taskId);
+            renderTasks();
+            renderReminders();
+            renderUpcoming();
+            updateStats();
+        }
+
+        // Delete task
+        function deleteTask(taskId) {
+            if (confirm('Hapus tugas ini?')) {
+                TaskService.deleteTask(taskId);
+                renderTasks();
+                renderReminders();
+                renderCalendar();
+                renderUpcoming();
+                updateStats();
+                showToast('🗑️', 'Tugas berhasil dihapus!');
+            }
+        }
+
+        // Toggle dropdown
+        function toggleDropdown() {
+            document.getElementById('dropdownMenu').classList.toggle('show');
+        }
+
+        document.addEventListener('click', function (e) {
+            const dropdown = document.getElementById('dropdownMenu');
+            const avatar = document.getElementById('userAvatar');
+            if (!avatar.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // Logout
+        function handleLogout() {
+            AuthService.logout();
+            window.location.href = 'login.html';
+        }
+
+        // Toast notification
+        function showToast(icon, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastIcon').textContent = icon;
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Initialize
+        initDashboard();
+    </script>
+</body>
+
+</html>
