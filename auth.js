@@ -107,7 +107,8 @@ const TaskService = {
 
     toggleTask: function (taskId) {
         const tasks = JSON.parse(localStorage.getItem('tugasin_tasks') || '[]');
-        const task = tasks.find(t => t.id === taskId);
+        const numericId = Number(taskId);
+        const task = tasks.find(t => Number(t.id) === numericId);
 
         if (task) {
             task.completed = !task.completed;
@@ -120,7 +121,8 @@ const TaskService = {
 
     deleteTask: function (taskId) {
         let tasks = JSON.parse(localStorage.getItem('tugasin_tasks') || '[]');
-        tasks = tasks.filter(t => t.id !== taskId);
+        const numericId = Number(taskId);
+        tasks = tasks.filter(t => Number(t.id) !== numericId);
         localStorage.setItem('tugasin_tasks', JSON.stringify(tasks));
         return { success: true };
     },

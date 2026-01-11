@@ -1,71 +1,61 @@
 # TugasIn - Platform Manajemen Tugas Kuliah
 
-> Platform manajemen tugas kuliah untuk mahasiswa Indonesia. Kelola deadline, kolaborasi kelompok, dan tingkatkan produktivitas akademik.
+![TugasIn Logo](favicon.png)
 
-## 📋 Tentang TugasIn
+## 📋 Deskripsi
 
-TugasIn adalah platform SaaS yang membantu mahasiswa mengelola tugas kuliah dengan lebih efektif. Dengan fitur reminder otomatis, kalender akademik, kolaborasi kelompok, dan tracking progress, tidak ada lagi deadline yang terlewat!
+**TugasIn** adalah platform manajemen tugas kuliah yang dirancang khusus untuk mahasiswa Indonesia. Platform ini membantu mahasiswa mengelola tugas kuliah dengan mudah melalui fitur-fitur seperti reminder otomatis, kalender akademik, dan progress tracking.
 
 ## ✨ Fitur Utama
 
-- **⏰ Reminder Otomatis** - Notifikasi H-3, H-1, dan hari H via email, push, atau WhatsApp
-- **📅 Kalender Akademik** - Visualisasi deadline dalam tampilan kalender, sync eksternal
-- **👥 Kolaborasi Kelompok** - Pembagian task, progress tracking, chat terintegrasi
-- **📊 Progress Tracker** - Statistik tugas, streak harian, leaderboard
-- **🏷️ Kategori & Label** - Organisir berdasarkan mata kuliah dan prioritas
-- **🏆 Gamifikasi** - Badge dan poin untuk motivasi
+- 📝 **Manajemen Tugas** - Tambah, edit, hapus, dan tandai tugas selesai
+- ⏰ **Reminder Otomatis** - Notifikasi saat deadline mendekat
+- 📅 **Kalender Akademik** - Visualisasi deadline dalam kalender
+- 📊 **Progress Tracker** - Statistik produktivitas
+- 🎯 **Prioritas Tugas** - Tinggi, Sedang, Rendah
+- 🌙 **Dark/Light Mode** - Tema yang nyaman untuk mata
+- 📄 **Export PDF** - Laporan tugas dalam format PDF
+- 🔐 **Autentikasi** - Login & Register dengan validasi
 
-## 🚀 Cara Menggunakan
+## 🛠️ Teknologi
 
-### Pengembangan Lokal
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
+- LocalStorage untuk penyimpanan data
+- Lucide Icons
+- Twemoji
 
-1. Clone atau download project ini
-2. Buka folder project
-3. Jalankan dengan live server:
-   - VS Code: Install "Live Server" extension → klik kanan `index.html` → "Open with Live Server"
-   - Atau buka langsung file `index.html` di browser
-
-### Struktur File
+## 📁 Struktur File
 
 ```
 tugasin/
-├── index.html          # Landing page
-├── features.html       # Detail fitur & harga
-├── demo.html           # Demo interaktif
-├── support.html        # FAQ & kontak
-├── styles.css          # Stylesheet
-├── script.js           # JavaScript
-└── README.md           # Dokumentasi
+├── index.html          # Homepage
+├── features.html       # Halaman fitur
+├── dashboard.html      # Dashboard utama
+├── login.html          # Halaman login
+├── register.html       # Halaman registrasi
+├── support.html        # Pusat bantuan
+├── developer.html      # Profil developer
+├── demo.html           # Demo aplikasi
+├── styles.css          # Stylesheet utama
+├── script.js           # JavaScript utama
+├── auth.js             # Autentikasi
+├── favicon.png         # Ikon website
+└── foto-ferdi.jpg      # Foto developer
 ```
 
-## 🌐 Deployment ke GitHub Pages
+## 👨‍💻 Developer
 
-1. Buat repository baru di GitHub
-2. Push semua file ke repository
-3. Buka Settings → Pages
-4. Pilih Source: Deploy from branch
-5. Pilih Branch: main, Folder: / (root)
-6. Klik Save
+**Ferdiyansyah Pratama Putra**
+- NIM: 241110117
+- Program Studi: Teknik Informatika
+- Universitas: Mercu Buana Yogyakarta
 
-Website akan tersedia di: `https://[username].github.io/[repo-name]/`
+## 📜 Lisensi
 
-## 💼 Paket Harga
+© 2026 TugasIn. Hak Cipta Dilindungi.
 
-| Fitur | Gratis | Mahasiswa (Rp 29K/bln) | Kampus (Rp 199K/bln) |
-|-------|--------|------------------------|----------------------|
-| Tugas Aktif | 10 | Unlimited | Unlimited |
-| Reminder | Email | Multi-channel | Multi-channel |
-| Grup Kolaborasi | 1 | 10 | Unlimited |
-| Analytics | Basic | Lengkap | Lengkap + Admin |
+---
 
-## 👨‍💻 Tim Pengembang
-
-**[NAMA ANGGOTA TIM]**
-
-- Universitas Mercu Buana Yogyakarta
-- Mata Kuliah: Technopreneur
-- Tahun: 2026
-
-## 📄 Lisensi
-
-© 2026 TugasIn. Dibuat untuk keperluan akademik.
+*Dibuat untuk tugas kuliah di Universitas Mercu Buana Yogyakarta*

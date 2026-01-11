@@ -7,6 +7,7 @@
     <title>TugasIn - Platform Manajemen Tugas Kuliah</title>
     <meta name="description"
         content="Kelola tugas kuliah dengan mudah. Reminder deadline, kolaborasi kelompok, dan progress tracker untuk mahasiswa.">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +33,7 @@
                     <li><a href="features.html">Fitur</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
                     <li><a href="support.html">Bantuan</a></li>
+                    <li><a href="developer.html">Developer</a></li>
                 </ul>
                 <div class="nav-actions">
                     <a href="login.html" class="btn btn-secondary">Masuk</a>
@@ -72,8 +74,8 @@
                         Mulai Gratis
                         <span class="btn-icon">→</span>
                     </a>
-                    <a href="dashboard.html" class="btn btn-glass btn-large">
-                        Dashboard
+                    <a href="demo.html" class="btn btn-glass btn-large">
+                        Lihat Demo
                         <span class="btn-icon">→</span>
                     </a>
                 </div>
@@ -294,15 +296,15 @@
                     <ul class="footer-links">
                         <li><a href="features.html">Fitur</a></li>
                         <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="#">Harga</a></li>
+                        <li><a href="#" onclick="openInfoModal('pricing'); return false;">Harga</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4 class="footer-title">Perusahaan</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Tentang Kami</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Karir</a></li>
+                        <li><a href="#" onclick="openInfoModal('about'); return false;">Tentang Kami</a></li>
+                        <li><a href="#" onclick="openInfoModal('blog'); return false;">Blog</a></li>
+                        <li><a href="#" onclick="openInfoModal('career'); return false;">Karir</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -310,7 +312,7 @@
                     <ul class="footer-links">
                         <li><a href="support.html">Pusat Bantuan</a></li>
                         <li><a href="support.html">Kontak</a></li>
-                        <li><a href="#">Privasi</a></li>
+                        <li><a href="#" onclick="openInfoModal('privacy'); return false;">Privasi</a></li>
                     </ul>
                 </div>
             </div>
@@ -321,11 +323,180 @@
         </div>
     </footer>
 
+    <!-- Info Modal -->
+    <div class="modal-overlay" id="infoModal" style="display: none;">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="infoModalTitle">Informasi</h3>
+                <button class="modal-close" onclick="closeInfoModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="infoModalBody" style="line-height: 1.8; color: var(--color-text-muted);">
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.show {
+            display: flex !important;
+        }
+
+        .modal-content {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 24px;
+            width: 90%;
+            max-width: 500px;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--color-text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: var(--color-text);
+        }
+    </style>
+
     <script src="script.js"></script>
     <script>
         // Initialize Lucide Icons & Twemoji
         lucide.createIcons();
         twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
+
+        // Info Modal Content
+        const infoContent = {
+            about: {
+                title: '📋 Tentang TugasIn',
+                body: `<p><strong>TugasIn</strong> adalah platform manajemen tugas kuliah yang dirancang khusus untuk mahasiswa Indonesia.</p>
+                <p style="margin-top: 12px;"><strong>Visi:</strong> Membantu mahasiswa Indonesia meraih prestasi akademik maksimal melalui manajemen waktu yang efektif.</p>
+                <p style="margin-top: 12px;"><strong>Misi:</strong></p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li>Menyediakan tools manajemen tugas yang mudah digunakan</li>
+                    <li>Membantu mahasiswa tidak melewatkan deadline</li>
+                    <li>Meningkatkan produktivitas dan kolaborasi tim</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Tim:</strong> Dikembangkan oleh mahasiswa Universitas Mercu Buana Yogyakarta.</p>`
+            },
+            privacy: {
+                title: '🔒 Kebijakan Privasi',
+                body: `<p><strong>Kebijakan Privasi TugasIn</strong></p>
+                <p style="margin-top: 12px;">Kami menghargai privasi Anda. Berikut adalah kebijakan kami:</p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li><strong>Data yang dikumpulkan:</strong> Nama, email, dan data tugas yang Anda input.</li>
+                    <li><strong>Penggunaan data:</strong> Data hanya digunakan untuk menyediakan layanan TugasIn.</li>
+                    <li><strong>Keamanan:</strong> Data disimpan secara aman di perangkat Anda (localStorage).</li>
+                    <li><strong>Berbagi data:</strong> Kami tidak menjual atau membagikan data Anda kepada pihak ketiga.</li>
+                </ul>
+                <p style="margin-top: 12px;">Pertanyaan? Hubungi kami di <a href="mailto:privacy@tugasin.id" style="color: var(--color-primary);">privacy@tugasin.id</a></p>`
+            },
+            pricing: {
+                title: '💰 Harga',
+                body: `<p><strong>Paket TugasIn</strong></p>
+                <div style="margin-top: 16px; padding: 16px; background: rgba(59, 130, 246, 0.1); border-radius: 12px; border: 1px solid var(--color-primary);">
+                    <h4 style="color: var(--color-primary); margin-bottom: 8px;">✨ Paket Gratis (Selamanya!)</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Unlimited tugas</li>
+                        <li>Reminder deadline</li>
+                        <li>Kalender akademik</li>
+                        <li>Progress tracking</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 12px; padding: 16px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid var(--color-border);">
+                    <h4 style="margin-bottom: 8px;">🚀 Paket Pro (Coming Soon)</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Semua fitur Gratis</li>
+                        <li>Kolaborasi grup</li>
+                        <li>Sync Google Calendar</li>
+                        <li>Analytics lanjutan</li>
+                    </ul>
+                </div>`
+            },
+            blog: {
+                title: '📰 Blog',
+                body: `<p><strong>Blog TugasIn - Coming Soon!</strong></p>
+                <p style="margin-top: 12px;">Kami sedang menyiapkan konten menarik untuk Anda:</p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li>Tips produktivitas untuk mahasiswa</li>
+                    <li>Cara efektif mengerjakan tugas kelompok</li>
+                    <li>Time management untuk kuliah & organisasi</li>
+                    <li>Update fitur terbaru TugasIn</li>
+                </ul>
+                <p style="margin-top: 12px;">Stay tuned! 🎉</p>`
+            },
+            career: {
+                title: '💼 Karir',
+                body: `<p><strong>Bergabung dengan Tim TugasIn!</strong></p>
+                <p style="margin-top: 12px;">Kami selalu mencari talenta terbaik untuk bergabung. Posisi yang tersedia:</p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li><strong>Frontend Developer</strong> - React/Vue.js</li>
+                    <li><strong>Backend Developer</strong> - Node.js/Python</li>
+                    <li><strong>UI/UX Designer</strong> - Figma</li>
+                    <li><strong>Content Writer</strong> - Blog & Social Media</li>
+                </ul>
+                <p style="margin-top: 12px;">Tertarik? Kirim CV ke <a href="mailto:career@tugasin.id" style="color: var(--color-primary);">career@tugasin.id</a></p>`
+            }
+        };
+
+        function openInfoModal(type) {
+            const content = infoContent[type];
+            if (content) {
+                document.getElementById('infoModalTitle').innerHTML = content.title;
+                document.getElementById('infoModalBody').innerHTML = content.body;
+                document.getElementById('infoModal').classList.add('show');
+            }
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').classList.remove('show');
+        }
+
+        document.getElementById('infoModal').addEventListener('click', function (e) {
+            if (e.target === this) closeInfoModal();
+        });
     </script>
 </body>
 

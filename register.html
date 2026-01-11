@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar - TugasIn</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,8 +98,39 @@
         }
 
         .error-message.show,
-        .success-message.show {
+        .success-message.show,
+        .info-message.show {
             display: block;
+        }
+
+        .info-message {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            color: #3b82f6;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+
+        /* Password Toggle */
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .password-toggle:hover {
+            opacity: 1;
         }
 
         .back-link {
@@ -115,6 +147,55 @@
         .back-link:hover {
             color: var(--color-text);
         }
+
+        /* Loading Spinner */
+        .btn-loading {
+            position: relative;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .btn-loading::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            margin-left: 8px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Validation Styles */
+        .form-hint {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            margin-top: 4px;
+        }
+
+        .form-hint.error {
+            color: #ef4444;
+        }
+
+        .form-hint.success {
+            color: #22c55e;
+        }
+
+        .form-input.valid {
+            border-color: #22c55e !important;
+        }
+
+        .form-input.invalid {
+            border-color: #ef4444 !important;
+        }
     </style>
 </head>
 
@@ -129,6 +210,7 @@
                 <p class="auth-subtitle">Buat akun baru untuk mulai</p>
             </div>
 
+            <div class="info-message" id="infoMessage"></div>
             <div class="error-message" id="errorMessage"></div>
             <div class="success-message" id="successMessage"></div>
 
@@ -136,17 +218,24 @@
                 <div class="form-group">
                     <label for="name" class="form-label">Nama</label>
                     <input type="text" id="name" class="form-input" placeholder="Nama lengkap" required>
+                    <div class="form-hint" id="nameHint"></div>
                 </div>
                 <div class="form-group">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" id="username" class="form-input" placeholder="Pilih username" required>
+                    <div class="form-hint" id="usernameHint">Minimal 3 karakter, huruf dan angka saja</div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" class="form-input" placeholder="Minimal 4 karakter" required
-                        minlength="4">
+                    <div class="password-wrapper">
+                        <input type="password" id="password" class="form-input" placeholder="Minimal 4 karakter"
+                            required minlength="4">
+                        <button type="button" class="password-toggle" onclick="togglePassword()"
+                            title="Tampilkan/Sembunyikan Password">👁️</button>
+                    </div>
+                    <div class="form-hint" id="passwordHint"></div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Daftar</button>
+                <button type="submit" class="btn btn-primary btn-block" id="registerBtn">Daftar</button>
             </form>
 
             <div class="auth-footer">
@@ -162,6 +251,121 @@
             window.location.href = 'dashboard.html';
         }
 
+        // Check if redirected from protected page
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('redirect') === 'dashboard') {
+            const infoMessage = document.getElementById('infoMessage');
+            infoMessage.textContent = '🔒 Daftar akun gratis untuk mengakses Dashboard dan mulai kelola tugasmu!';
+            infoMessage.classList.add('show');
+        }
+
+        // ========== Real-time Validation ==========
+        const nameInput = document.getElementById('name');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const nameHint = document.getElementById('nameHint');
+        const usernameHint = document.getElementById('usernameHint');
+        const passwordHint = document.getElementById('passwordHint');
+        const registerBtn = document.getElementById('registerBtn');
+
+        // Name validation
+        nameInput.addEventListener('input', function () {
+            const value = this.value.trim();
+            if (value.length === 0) {
+                nameHint.textContent = '';
+                nameHint.className = 'form-hint';
+                this.classList.remove('valid', 'invalid');
+            } else if (value.length < 2) {
+                nameHint.textContent = '❌ Nama minimal 2 karakter';
+                nameHint.className = 'form-hint error';
+                this.classList.remove('valid');
+                this.classList.add('invalid');
+            } else {
+                nameHint.textContent = '✓ Nama valid';
+                nameHint.className = 'form-hint success';
+                this.classList.remove('invalid');
+                this.classList.add('valid');
+            }
+            updateSubmitButton();
+        });
+
+        // Username validation
+        usernameInput.addEventListener('input', function () {
+            const value = this.value.trim();
+            const validPattern = /^[a-zA-Z0-9_]+$/;
+
+            if (value.length === 0) {
+                usernameHint.textContent = 'Minimal 3 karakter, huruf dan angka saja';
+                usernameHint.className = 'form-hint';
+                this.classList.remove('valid', 'invalid');
+            } else if (value.length < 3) {
+                usernameHint.textContent = '❌ Username minimal 3 karakter';
+                usernameHint.className = 'form-hint error';
+                this.classList.remove('valid');
+                this.classList.add('invalid');
+            } else if (!validPattern.test(value)) {
+                usernameHint.textContent = '❌ Hanya huruf, angka, dan underscore';
+                usernameHint.className = 'form-hint error';
+                this.classList.remove('valid');
+                this.classList.add('invalid');
+            } else {
+                // Check if username already exists
+                const users = JSON.parse(localStorage.getItem('tugasin_users') || '[]');
+                const exists = users.some(u => u.username.toLowerCase() === value.toLowerCase());
+                if (exists) {
+                    usernameHint.textContent = '❌ Username sudah digunakan';
+                    usernameHint.className = 'form-hint error';
+                    this.classList.remove('valid');
+                    this.classList.add('invalid');
+                } else {
+                    usernameHint.textContent = '✓ Username tersedia';
+                    usernameHint.className = 'form-hint success';
+                    this.classList.remove('invalid');
+                    this.classList.add('valid');
+                }
+            }
+            updateSubmitButton();
+        });
+
+        // Password validation
+        passwordInput.addEventListener('input', function () {
+            const value = this.value;
+
+            if (value.length === 0) {
+                passwordHint.textContent = '';
+                passwordHint.className = 'form-hint';
+                this.classList.remove('valid', 'invalid');
+            } else if (value.length < 4) {
+                passwordHint.textContent = '❌ Password minimal 4 karakter';
+                passwordHint.className = 'form-hint error';
+                this.classList.remove('valid');
+                this.classList.add('invalid');
+            } else if (value.length < 6) {
+                passwordHint.textContent = '⚠️ Password cukup, tapi bisa lebih kuat';
+                passwordHint.className = 'form-hint';
+                this.classList.remove('invalid');
+                this.classList.add('valid');
+            } else {
+                passwordHint.textContent = '✓ Password kuat';
+                passwordHint.className = 'form-hint success';
+                this.classList.remove('invalid');
+                this.classList.add('valid');
+            }
+            updateSubmitButton();
+        });
+
+        function updateSubmitButton() {
+            const isNameValid = nameInput.classList.contains('valid');
+            const isUsernameValid = usernameInput.classList.contains('valid');
+            const isPasswordValid = passwordInput.classList.contains('valid');
+
+            registerBtn.disabled = !(isNameValid && isUsernameValid && isPasswordValid);
+            registerBtn.style.opacity = registerBtn.disabled ? '0.6' : '1';
+        }
+
+        // Initialize button state
+        updateSubmitButton();
+
         document.getElementById('registerForm').addEventListener('submit', function (e) {
             e.preventDefault();
 
@@ -175,23 +379,47 @@
             errorMessage.classList.remove('show');
             successMessage.classList.remove('show');
 
-            const result = AuthService.register({
-                name: name,
-                username: username,
-                password: password
-            });
+            // Show loading
+            registerBtn.classList.add('btn-loading');
+            registerBtn.textContent = 'Memproses...';
 
-            if (result.success) {
-                successMessage.textContent = 'Akun berhasil dibuat! Mengalihkan...';
-                successMessage.classList.add('show');
-                setTimeout(() => {
-                    window.location.href = 'dashboard.html';
-                }, 1500);
-            } else {
-                errorMessage.textContent = result.message;
-                errorMessage.classList.add('show');
-            }
+            setTimeout(function () {
+                const result = AuthService.register({
+                    name: name,
+                    username: username,
+                    password: password
+                });
+
+                if (result.success) {
+                    registerBtn.classList.remove('btn-loading');
+                    registerBtn.textContent = '✓ Berhasil!';
+                    successMessage.textContent = 'Akun berhasil dibuat! Mengalihkan...';
+                    successMessage.classList.add('show');
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                } else {
+                    registerBtn.classList.remove('btn-loading');
+                    registerBtn.textContent = 'Daftar';
+                    errorMessage.textContent = result.message;
+                    errorMessage.classList.add('show');
+                }
+            }, 800);
         });
+
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = event.target;
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = '👁️';
+            }
+        }
 
         // Init icons
         lucide.createIcons();

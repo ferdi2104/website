@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - TugasIn</title>
     <meta name="description" content="Dashboard TugasIn - Kelola tugas kuliah kamu.">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -361,8 +362,9 @@
             color: var(--color-text-muted);
             cursor: pointer;
             padding: var(--spacing-xs);
-            opacity: 0;
+            opacity: 0.5;
             transition: all var(--transition-fast);
+            font-size: 1rem;
         }
 
         .task-item:hover .task-delete {
@@ -371,6 +373,239 @@
 
         .task-delete:hover {
             color: var(--color-danger);
+            transform: scale(1.1);
+        }
+
+        .task-edit {
+            background: none;
+            border: none;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            padding: var(--spacing-xs);
+            opacity: 0.5;
+            transition: all var(--transition-fast);
+            font-size: 1rem;
+        }
+
+        .task-item:hover .task-edit {
+            opacity: 1;
+        }
+
+        .task-edit:hover {
+            color: var(--color-primary);
+            transform: scale(1.1);
+        }
+
+        .task-actions {
+            display: flex;
+            gap: var(--spacing-xs);
+            align-items: center;
+        }
+
+        /* Task Filter */
+        .task-filter {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: var(--spacing-xs) var(--spacing-md);
+            border: 1px solid var(--color-border);
+            background: transparent;
+            color: var(--color-text-muted);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* Priority Select in Form */
+        .priority-select {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid var(--color-border);
+            background: var(--color-card);
+            color: var(--color-text);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            color: var(--color-text);
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: var(--spacing-sm);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Edit Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            width: 90%;
+            max-width: 500px;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .modal-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--color-text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color var(--transition-fast);
+        }
+
+        .modal-close:hover {
+            color: var(--color-text);
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .form-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        .modal-actions .btn {
+            flex: 1;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Light Theme */
+        body.light-theme {
+            --color-background: #f5f7fa;
+            --color-card: #ffffff;
+            --color-border: #e2e8f0;
+            --color-text: #1a202c;
+            --color-text-muted: #718096;
+        }
+
+        body.light-theme .navbar {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        body.light-theme .stat-card,
+        body.light-theme .content-card {
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-theme .task-item {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        body.light-theme .task-item:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        body.light-theme .filter-btn {
+            background: #ffffff;
+        }
+
+        body.light-theme .calendar-widget {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        body.light-theme .calendar-header {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        body.light-theme .calendar-days {
+            background: rgba(0, 0, 0, 0.03);
         }
 
         /* Empty State */
@@ -668,6 +903,541 @@
                 transform: translateY(0);
             }
         }
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            align-items: center;
+        }
+
+        .search-input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-input-wrapper input {
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            padding-left: 40px;
+            border: 1px solid var(--color-border);
+            background: var(--color-card);
+            color: var(--color-text);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+        }
+
+        .search-input-wrapper input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.1);
+        }
+
+        .search-input-wrapper .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-text-muted);
+            pointer-events: none;
+        }
+
+        /* Action Buttons Container */
+        .action-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid var(--color-border);
+            background: var(--color-card);
+            color: var(--color-text);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .action-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .action-btn.primary {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: white;
+        }
+
+        .action-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(45, 212, 191, 0.3);
+        }
+
+        /* Notification Badge */
+        .notification-btn {
+            position: relative;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Notification Permission Banner */
+        .notification-banner {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md) var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .notification-banner.show {
+            display: flex;
+        }
+
+        .notification-banner-text {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--color-text);
+        }
+
+        .notification-banner-text span {
+            font-size: 1.5rem;
+        }
+
+        .notification-banner-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        /* Search highlight */
+        .task-title mark {
+            background: rgba(45, 212, 191, 0.3);
+            color: var(--color-primary);
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        /* Settings Modal */
+        .settings-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .settings-modal.show {
+            display: flex;
+        }
+
+        .settings-content {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .settings-header h2 {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: var(--font-size-xl);
+        }
+
+        .settings-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-text-muted);
+            transition: color 0.2s;
+        }
+
+        .settings-close:hover {
+            color: var(--color-text);
+        }
+
+        .settings-body {
+            padding: var(--spacing-lg);
+        }
+
+        .settings-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .settings-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .settings-section-title {
+            font-size: var(--font-size-md);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .settings-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .settings-item-info h4 {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .settings-item-info p {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background: var(--color-border);
+            border-radius: 26px;
+            transition: 0.3s;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .toggle-switch input:checked+.toggle-slider {
+            background: var(--color-primary);
+        }
+
+        .toggle-switch input:checked+.toggle-slider::before {
+            transform: translateX(24px);
+        }
+
+        /* Profile Edit Form */
+        .profile-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .profile-avatar-edit {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .profile-avatar-preview {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .settings-input {
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid var(--color-border);
+            background: var(--color-background);
+            color: var(--color-text);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+        }
+
+        .settings-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .settings-footer {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: flex-end;
+            padding: var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Enhanced Profile Editing */
+        .profile-avatar-section {
+            display: flex;
+            gap: var(--spacing-lg);
+            align-items: flex-start;
+            padding: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .profile-avatar-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .profile-avatar-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+        }
+
+        .profile-avatar-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--color-primary);
+        }
+
+        .photo-upload-section {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .upload-btn {
+            font-size: var(--font-size-xs) !important;
+            padding: 6px 12px !important;
+        }
+
+        /* Navbar avatar with image */
+        .user-avatar-img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .avatar-selector {
+            flex: 1;
+        }
+
+        .avatar-options {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .avatar-option {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--color-border);
+            background: var(--color-card);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+        }
+
+        .avatar-option:hover {
+            border-color: var(--color-primary);
+            transform: scale(1.1);
+        }
+
+        .avatar-option.selected {
+            border-color: var(--color-primary);
+            background: rgba(45, 212, 191, 0.2);
+        }
+
+        .avatar-option.default {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .profile-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        @media (max-width: 500px) {
+            .profile-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-avatar-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        .profile-account-info {
+            background: rgba(45, 212, 191, 0.1);
+            border: 1px solid rgba(45, 212, 191, 0.2);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .account-info-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--font-size-sm);
+            padding: 4px 0;
+        }
+
+        .account-info-item:not(:last-child) {
+            border-bottom: 1px solid rgba(45, 212, 191, 0.2);
+            margin-bottom: 4px;
+        }
+
+        .password-change-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .password-change-section .form-group {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .password-change-section .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .save-profile-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .save-status {
+            font-size: var(--font-size-sm);
+            color: var(--color-success);
+        }
+
+        /* Danger Zone */
+        .danger-zone {
+            border-color: rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .danger-zone .settings-section-title {
+            color: #ef4444;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            transition: all 0.2s;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
     </style>
 </head>
 
@@ -684,8 +1454,12 @@
                     <li><a href="dashboard.html" class="active">Dashboard</a></li>
                     <li><a href="features.html">Fitur</a></li>
                     <li><a href="support.html">Bantuan</a></li>
+                    <li><a href="developer.html">Developer</a></li>
                 </ul>
                 <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti Tema">
+                        <span id="themeIcon">🌙</span>
+                    </button>
                     <div class="user-dropdown">
                         <div class="user-avatar" id="userAvatar" onclick="toggleDropdown()">U</div>
                         <div class="dropdown-menu" id="dropdownMenu">
@@ -694,7 +1468,7 @@
                                 <span id="userName">User</span>
                             </div>
                             <div class="dropdown-divider"></div>
-                            <div class="dropdown-item" onclick="window.location.href='features.html'">
+                            <div class="dropdown-item" onclick="openSettingsModal()">
                                 <span>⚙️</span>
                                 <span>Pengaturan</span>
                             </div>
@@ -722,6 +1496,23 @@
                     <h1>Selamat datang, <span id="welcomeName">User</span>! 👋</h1>
                     <p>Ayo produktif hari ini. Kamu punya <strong id="pendingCount">0</strong> tugas yang harus
                         dikerjakan.</p>
+                </div>
+            </div>
+
+            <!-- Notification Permission Banner -->
+            <div class="notification-banner" id="notificationBanner">
+                <div class="notification-banner-text">
+                    <span>🔔</span>
+                    <div>
+                        <strong>Aktifkan Notifikasi</strong>
+                        <p style="margin: 0; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
+                            Dapatkan pengingat otomatis saat deadline mendekat
+                        </p>
+                    </div>
+                </div>
+                <div class="notification-banner-actions">
+                    <button class="btn btn-secondary" onclick="dismissNotificationBanner()">Nanti</button>
+                    <button class="btn btn-primary" onclick="requestNotificationPermission()">Aktifkan</button>
                 </div>
             </div>
 
@@ -775,8 +1566,43 @@
                             <input type="text" id="taskSubject" class="form-input" placeholder="Mata Kuliah..."
                                 required>
                             <input type="date" id="taskDeadline" class="form-input" required>
+                            <select id="taskPriority" class="priority-select">
+                                <option value="rendah">🟢 Rendah</option>
+                                <option value="sedang" selected>🟡 Sedang</option>
+                                <option value="tinggi">🔴 Tinggi</option>
+                            </select>
                             <button type="submit" class="btn btn-primary">+ Tambah</button>
                         </form>
+
+                        <!-- Search & Actions -->
+                        <div class="search-container">
+                            <div class="search-input-wrapper">
+                                <span class="search-icon">🔍</span>
+                                <input type="text" id="searchInput" placeholder="Cari tugas..." oninput="searchTasks()">
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn notification-btn" onclick="toggleNotifications()"
+                                    title="Notifikasi">
+                                    🔔
+                                    <span class="notification-badge" id="notifBadge" style="display: none;">0</span>
+                                </button>
+                                <button class="action-btn" onclick="exportToPDF()" title="Export PDF">
+                                    📄 Export
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Task Filter -->
+                        <div class="task-filter">
+                            <button class="filter-btn active" data-filter="all"
+                                onclick="filterTasks('all')">Semua</button>
+                            <button class="filter-btn" data-filter="active"
+                                onclick="filterTasks('active')">Aktif</button>
+                            <button class="filter-btn" data-filter="completed"
+                                onclick="filterTasks('completed')">Selesai</button>
+                            <button class="filter-btn" data-filter="tinggi" onclick="filterTasks('tinggi')">🔴 Prioritas
+                                Tinggi</button>
+                        </div>
 
                         <!-- Task List -->
                         <div class="task-list" id="taskList">
@@ -856,11 +1682,246 @@
         <span id="toastMessage">Berhasil!</span>
     </div>
 
+    <!-- Edit Task Modal -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">✏️ Edit Tugas</h3>
+                <button class="modal-close" onclick="closeEditModal()">&times;</button>
+            </div>
+            <form class="modal-form" id="editTaskForm">
+                <input type="hidden" id="editTaskId">
+                <div class="form-group">
+                    <label class="form-label">Judul Tugas</label>
+                    <input type="text" id="editTitle" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Mata Kuliah</label>
+                    <input type="text" id="editSubject" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Deadline</label>
+                    <input type="date" id="editDeadline" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Prioritas</label>
+                    <select id="editPriority" class="priority-select" style="width: 100%;">
+                        <option value="rendah">🟢 Rendah</option>
+                        <option value="sedang">🟡 Sedang</option>
+                        <option value="tinggi">🔴 Tinggi</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Batal</button>
+                    <button type="submit" class="btn btn-primary">💾 Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h2>⚙️ Pengaturan</h2>
+                <button class="settings-close" onclick="closeSettingsModal()">×</button>
+            </div>
+
+            <div class="settings-body">
+                <!-- Profile Section -->
+                <div class="settings-section">
+                    <h3 class="settings-section-title">👤 Edit Profil</h3>
+                    <div class="profile-form">
+                        <!-- Avatar Selection -->
+                        <div class="profile-avatar-section">
+                            <div class="profile-avatar-container">
+                                <div class="profile-avatar-preview" id="settingsAvatar">U</div>
+                                <img class="profile-avatar-image" id="settingsAvatarImg" src="" alt="Avatar"
+                                    style="display: none;">
+                            </div>
+                            <div class="avatar-selector">
+                                <p style="font-size: var(--font-size-sm); margin-bottom: 8px;">📷 Upload Foto:</p>
+                                <div class="photo-upload-section">
+                                    <input type="file" id="avatarUpload" accept="image/*"
+                                        onchange="handleAvatarUpload(event)" style="display: none;">
+                                    <button type="button" class="btn btn-secondary upload-btn"
+                                        onclick="document.getElementById('avatarUpload').click()">
+                                        📤 Pilih Foto
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" onclick="removePhoto()"
+                                        id="removePhotoBtn" style="display: none;">
+                                        🗑️ Hapus
+                                    </button>
+                                </div>
+                                <p style="font-size: 11px; color: var(--color-text-muted); margin: 8px 0;">Atau pilih
+                                    emoji:</p>
+                                <div class="avatar-options" id="avatarOptions">
+                                    <button type="button" class="avatar-option" onclick="selectAvatar('😀')">😀</button>
+                                    <button type="button" class="avatar-option" onclick="selectAvatar('😎')">😎</button>
+                                    <button type="button" class="avatar-option"
+                                        onclick="selectAvatar('🧑‍💻')">🧑‍💻</button>
+                                    <button type="button" class="avatar-option"
+                                        onclick="selectAvatar('👨‍🎓')">👨‍🎓</button>
+                                    <button type="button" class="avatar-option"
+                                        onclick="selectAvatar('👩‍🎓')">👩‍🎓</button>
+                                    <button type="button" class="avatar-option" onclick="selectAvatar('🦊')">🦊</button>
+                                    <button type="button" class="avatar-option" onclick="selectAvatar('🐱')">🐱</button>
+                                    <button type="button" class="avatar-option" onclick="selectAvatar('🦁')">🦁</button>
+                                    <button type="button" class="avatar-option default"
+                                        onclick="selectAvatar('default')">A</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Info -->
+                    <div class="profile-info-grid">
+                        <div class="form-group">
+                            <label class="form-label">Nama Lengkap</label>
+                            <input type="text" id="editName" class="settings-input" placeholder="Masukkan nama lengkap">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Username</label>
+                            <input type="text" id="editUsername" class="settings-input" placeholder="Username" disabled
+                                style="opacity: 0.6; cursor: not-allowed;">
+                            <small style="color: var(--color-text-muted); font-size: 11px;">Username tidak dapat
+                                diubah</small>
+                        </div>
+                    </div>
+
+                    <!-- Account Info -->
+                    <div class="profile-account-info">
+                        <div class="account-info-item">
+                            <span>📅 Bergabung:</span>
+                            <span id="joinDate">-</span>
+                        </div>
+                        <div class="account-info-item">
+                            <span>📊 Total Tugas Dibuat:</span>
+                            <span id="totalTasksCreated">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Password Change -->
+                    <div class="password-change-section">
+                        <h4 style="font-size: var(--font-size-sm); margin-bottom: 12px;">🔐 Ubah Password</h4>
+                        <div class="form-group">
+                            <label class="form-label">Password Baru</label>
+                            <input type="password" id="newPassword" class="settings-input"
+                                placeholder="Minimal 4 karakter">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Konfirmasi Password</label>
+                            <input type="password" id="confirmPassword" class="settings-input"
+                                placeholder="Ulangi password baru">
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="save-profile-actions">
+                        <button class="btn btn-primary" onclick="saveProfile()">
+                            💾 Simpan Perubahan
+                        </button>
+                        <span class="save-status" id="saveStatus"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appearance Section -->
+            <div class="settings-section">
+                <h3 class="settings-section-title">🎨 Tampilan</h3>
+                <div class="settings-item">
+                    <div class="settings-item-info">
+                        <h4>Mode Gelap</h4>
+                        <p>Aktifkan tampilan gelap untuk kenyamanan mata</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Notification Section -->
+            <div class="settings-section">
+                <h3 class="settings-section-title">🔔 Notifikasi</h3>
+                <div class="settings-item">
+                    <div class="settings-item-info">
+                        <h4>Notifikasi Browser</h4>
+                        <p>Terima pengingat saat deadline mendekat</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="notifToggle" onchange="toggleNotifSetting()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="settings-item">
+                    <div class="settings-item-info">
+                        <h4>Status Notifikasi</h4>
+                        <p id="notifStatus">Mengecek...</p>
+                    </div>
+                    <button class="btn btn-secondary" onclick="requestNotificationPermission()"
+                        style="font-size: var(--font-size-xs);">
+                        🔔 Minta Izin
+                    </button>
+                </div>
+            </div>
+
+            <!-- Data Section -->
+            <div class="settings-section">
+                <h3 class="settings-section-title">📊 Data</h3>
+                <div class="settings-item">
+                    <div class="settings-item-info">
+                        <h4>Export Data Tugas</h4>
+                        <p>Download semua tugas dalam format PDF</p>
+                    </div>
+                    <button class="btn btn-secondary" onclick="exportToPDF()" style="font-size: var(--font-size-xs);">
+                        📄 Export PDF
+                    </button>
+                </div>
+                <div class="settings-item">
+                    <div class="settings-item-info">
+                        <h4>Statistik Tugas</h4>
+                        <p id="taskStatsInfo">Total: 0 | Selesai: 0 | Pending: 0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Danger Zone -->
+            <div class="settings-section danger-zone"
+                style="padding: var(--spacing-md); border-radius: var(--radius-md);">
+                <h3 class="settings-section-title">⚠️ Zona Berbahaya</h3>
+                <div class="settings-item" style="background: transparent; border-color: rgba(239, 68, 68, 0.3);">
+                    <div class="settings-item-info">
+                        <h4>Hapus Semua Tugas</h4>
+                        <p>Menghapus semua tugas secara permanen</p>
+                    </div>
+                    <button class="btn-danger" onclick="deleteAllTasks()">
+                        🗑️ Hapus Semua
+                    </button>
+                </div>
+                <div class="settings-item" style="background: transparent; border-color: rgba(239, 68, 68, 0.3);">
+                    <div class="settings-item-info">
+                        <h4>Keluar Akun</h4>
+                        <p>Logout dari akun saat ini</p>
+                    </div>
+                    <button class="btn-danger" onclick="handleLogout()">
+                        🚪 Keluar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-footer">
+            <button class="btn btn-secondary" onclick="closeSettingsModal()">Tutup</button>
+        </div>
+    </div>
+    </div>
+
     <script src="auth.js"></script>
     <script>
         // Check authentication
         if (!AuthService.isLoggedIn()) {
-            window.location.href = 'login.html';
+            window.location.href = 'login.html?redirect=dashboard';
         }
 
         const currentUser = AuthService.getCurrentUser();
@@ -887,7 +1948,9 @@
             if (currentUser) {
                 document.getElementById('welcomeName').textContent = currentUser.name.split(' ')[0];
                 document.getElementById('userName').textContent = currentUser.name;
-                document.getElementById('userAvatar').textContent = currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
+
+                // Update navbar avatar (photo or text)
+                updateNavbarAvatar();
             }
 
             // Set default deadline to tomorrow
@@ -895,15 +1958,17 @@
             tomorrow.setDate(tomorrow.getDate() + 1);
             document.getElementById('taskDeadline').valueAsDate = tomorrow;
 
-            // Initialize demo tasks if empty
+            // Initialize demo tasks only once (first time user)
+            const demoInitKey = `tugasin_demo_init_${currentUser.id}`;
             let tasks = TaskService.getTasks();
-            if (tasks.length === 0) {
+            if (tasks.length === 0 && !localStorage.getItem(demoInitKey)) {
                 const allTasks = localStorage.getItem('tugasin_tasks');
                 const existingTasks = allTasks ? JSON.parse(allTasks) : [];
                 demoTasks.forEach(task => {
                     existingTasks.push({ ...task, userId: currentUser.id });
                 });
                 localStorage.setItem('tugasin_tasks', JSON.stringify(existingTasks));
+                localStorage.setItem(demoInitKey, 'true');
             }
 
             renderTasks();
@@ -922,16 +1987,37 @@
             });
         }
 
+        // Current filter state
+        let currentFilter = 'all';
+
         // Render tasks
-        function renderTasks() {
-            const tasks = TaskService.getTasks();
+        function renderTasks(filter = currentFilter) {
+            currentFilter = filter;
+            let tasks = TaskService.getTasks();
             const taskList = document.getElementById('taskList');
+
+            // Apply filter
+            if (filter === 'active') {
+                tasks = tasks.filter(t => !t.completed);
+            } else if (filter === 'completed') {
+                tasks = tasks.filter(t => t.completed);
+            } else if (filter === 'tinggi') {
+                tasks = tasks.filter(t => t.priority === 'tinggi' && !t.completed);
+            }
+
+            // Apply search filter
+            if (currentSearchQuery) {
+                tasks = tasks.filter(t =>
+                    t.title.toLowerCase().includes(currentSearchQuery) ||
+                    t.subject.toLowerCase().includes(currentSearchQuery)
+                );
+            }
 
             if (tasks.length === 0) {
                 taskList.innerHTML = `
                     <div class="empty-state">
                         <div class="empty-icon">📭</div>
-                        <p>Belum ada tugas. Tambah tugas pertamamu!</p>
+                        <p>${filter === 'all' ? 'Belum ada tugas. Tambah tugas pertamamu!' : 'Tidak ada tugas dengan filter ini.'}</p>
                     </div>
                 `;
                 return;
@@ -952,6 +2038,7 @@
 
                 const taskEl = document.createElement('div');
                 taskEl.className = `task-item ${task.completed ? 'completed' : ''}`;
+                taskEl.dataset.id = task.id;
                 taskEl.innerHTML = `
                     <div class="task-checkbox ${task.completed ? 'checked' : ''}" onclick="toggleTask(${task.id})"></div>
                     <div class="task-info">
@@ -962,10 +2049,25 @@
                         </div>
                     </div>
                     <span class="task-priority priority-${task.priority}">${task.priority}</span>
-                    <button class="task-delete" onclick="event.stopPropagation(); deleteTask(${task.id})">🗑️</button>
+                    <div class="task-actions">
+                        <button class="task-edit" onclick="event.stopPropagation(); openEditModal(${task.id})" title="Edit">✏️</button>
+                        <button class="task-delete" onclick="event.stopPropagation(); deleteTask(${task.id})" title="Hapus">🗑️</button>
+                    </div>
                 `;
                 taskList.appendChild(taskEl);
             });
+        }
+
+        // Filter tasks
+        function filterTasks(filter) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.filter === filter) {
+                    btn.classList.add('active');
+                }
+            });
+            renderTasks(filter);
         }
 
         // Render reminders
@@ -1136,7 +2238,7 @@
                 title: document.getElementById('taskTitle').value,
                 subject: document.getElementById('taskSubject').value,
                 deadline: document.getElementById('taskDeadline').value,
-                priority: 'sedang'
+                priority: document.getElementById('taskPriority').value
             };
 
             const result = TaskService.addTask(taskData);
@@ -1165,17 +2267,15 @@
             updateStats();
         }
 
-        // Delete task
+        // Delete task - langsung hapus tanpa konfirmasi
         function deleteTask(taskId) {
-            if (confirm('Hapus tugas ini?')) {
-                TaskService.deleteTask(taskId);
-                renderTasks();
-                renderReminders();
-                renderCalendar();
-                renderUpcoming();
-                updateStats();
-                showToast('🗑️', 'Tugas berhasil dihapus!');
-            }
+            TaskService.deleteTask(taskId);
+            renderTasks();
+            renderReminders();
+            renderCalendar();
+            renderUpcoming();
+            updateStats();
+            showToast('🗑️', 'Tugas berhasil dihapus!');
         }
 
         // Toggle dropdown
@@ -1206,9 +2306,956 @@
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
+        // Edit Modal Functions
+        function openEditModal(taskId) {
+            const tasks = JSON.parse(localStorage.getItem('tugasin_tasks') || '[]');
+            const task = tasks.find(t => Number(t.id) === Number(taskId));
+
+            if (task) {
+                document.getElementById('editTaskId').value = task.id;
+                document.getElementById('editTitle').value = task.title;
+                document.getElementById('editSubject').value = task.subject;
+                document.getElementById('editDeadline').value = task.deadline;
+                document.getElementById('editPriority').value = task.priority;
+                document.getElementById('editModal').classList.add('show');
+            }
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').classList.remove('show');
+        }
+
+        // Edit form submission
+        document.getElementById('editTaskForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const taskId = Number(document.getElementById('editTaskId').value);
+            const updatedData = {
+                title: document.getElementById('editTitle').value,
+                subject: document.getElementById('editSubject').value,
+                deadline: document.getElementById('editDeadline').value,
+                priority: document.getElementById('editPriority').value
+            };
+
+            // Update task in storage
+            let tasks = JSON.parse(localStorage.getItem('tugasin_tasks') || '[]');
+            const taskIndex = tasks.findIndex(t => Number(t.id) === taskId);
+
+            if (taskIndex !== -1) {
+                tasks[taskIndex] = { ...tasks[taskIndex], ...updatedData };
+                localStorage.setItem('tugasin_tasks', JSON.stringify(tasks));
+
+                closeEditModal();
+                renderTasks();
+                renderReminders();
+                renderCalendar();
+                renderUpcoming();
+                updateStats();
+                showToast('✏️', 'Tugas berhasil diperbarui!');
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('editModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeEditModal();
+            }
+        });
+
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('themeIcon');
+
+            if (body.classList.contains('light-theme')) {
+                body.classList.remove('light-theme');
+                icon.textContent = '🌙';
+                localStorage.setItem('tugasin_theme', 'dark');
+            } else {
+                body.classList.add('light-theme');
+                icon.textContent = '☀️';
+                localStorage.setItem('tugasin_theme', 'light');
+            }
+
+            // Update toggle in settings modal
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            if (darkModeToggle) {
+                darkModeToggle.checked = !body.classList.contains('light-theme');
+            }
+        }
+
+        // ========== SETTINGS MODAL FUNCTIONS ==========
+        function openSettingsModal() {
+            const modal = document.getElementById('settingsModal');
+            modal.classList.add('show');
+
+            // Hide dropdown
+            document.getElementById('dropdownMenu').classList.remove('show');
+
+            // Populate settings data
+            loadSettingsData();
+        }
+
+        function closeSettingsModal() {
+            document.getElementById('settingsModal').classList.remove('show');
+        }
+
+        function loadSettingsData() {
+            // Load user profile
+            if (currentUser) {
+                document.getElementById('editName').value = currentUser.name;
+                document.getElementById('editUsername').value = currentUser.username;
+
+                // Display avatar (photo or emoji/letter)
+                if (currentUser.avatarPhoto) {
+                    document.getElementById('settingsAvatar').style.display = 'none';
+                    document.getElementById('settingsAvatarImg').src = currentUser.avatarPhoto;
+                    document.getElementById('settingsAvatarImg').style.display = 'block';
+                    document.getElementById('removePhotoBtn').style.display = 'inline-block';
+                } else {
+                    document.getElementById('settingsAvatarImg').style.display = 'none';
+                    document.getElementById('settingsAvatar').style.display = 'flex';
+                    const avatarDisplay = currentUser.avatarEmoji || currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
+                    document.getElementById('settingsAvatar').textContent = avatarDisplay;
+                    document.getElementById('removePhotoBtn').style.display = 'none';
+                    updateAvatarSelection(avatarDisplay);
+                }
+
+                // Join date
+                if (currentUser.createdAt) {
+                    const joinDate = new Date(currentUser.createdAt);
+                    document.getElementById('joinDate').textContent = joinDate.toLocaleDateString('id-ID', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                    });
+                } else {
+                    document.getElementById('joinDate').textContent = '-';
+                }
+
+                // Total tasks created
+                const userTasks = TaskService.getTasks();
+                document.getElementById('totalTasksCreated').textContent = userTasks.length;
+
+                // Highlight selected avatar
+                updateAvatarSelection(avatarDisplay);
+            }
+
+            // Load theme toggle state
+            const isDarkMode = !document.body.classList.contains('light-theme');
+            document.getElementById('darkModeToggle').checked = isDarkMode;
+
+            // Load notification status
+            updateNotificationStatus();
+
+            // Load task stats
+            const stats = TaskService.getStats();
+            document.getElementById('taskStatsInfo').textContent =
+                `Total: ${stats.total} | Selesai: ${stats.completed} | Pending: ${stats.pending}`;
+
+            // Clear password fields
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+            document.getElementById('saveStatus').textContent = '';
+        }
+
+        // Avatar selection
+        let selectedAvatar = null;
+        let uploadedPhotoData = null;
+
+        // Photo upload handling
+        function handleAvatarUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                showToast('⚠️', 'File harus berupa gambar!');
+                return;
+            }
+
+            // Validate file size (max 500KB for localStorage)
+            if (file.size > 500 * 1024) {
+                showToast('⚠️', 'Ukuran foto maksimal 500KB!');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                uploadedPhotoData = e.target.result;
+                selectedAvatar = null; // Clear emoji selection
+
+                // Update preview
+                document.getElementById('settingsAvatar').style.display = 'none';
+                document.getElementById('settingsAvatarImg').src = uploadedPhotoData;
+                document.getElementById('settingsAvatarImg').style.display = 'block';
+                document.getElementById('removePhotoBtn').style.display = 'inline-block';
+
+                // Clear emoji selection
+                document.querySelectorAll('.avatar-option').forEach(btn => btn.classList.remove('selected'));
+
+                showToast('📷', 'Foto berhasil dipilih! Klik Simpan untuk menyimpan.');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removePhoto() {
+            uploadedPhotoData = null;
+            document.getElementById('avatarUpload').value = '';
+            document.getElementById('settingsAvatarImg').style.display = 'none';
+            document.getElementById('settingsAvatar').style.display = 'flex';
+            document.getElementById('settingsAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+            document.getElementById('removePhotoBtn').style.display = 'none';
+            selectedAvatar = 'default';
+            showToast('🗑️', 'Foto dihapus');
+        }
+
+        function selectAvatar(avatar) {
+            selectedAvatar = avatar;
+            uploadedPhotoData = null; // Clear uploaded photo
+
+            // Hide photo, show emoji/letter
+            document.getElementById('settingsAvatarImg').style.display = 'none';
+            document.getElementById('settingsAvatar').style.display = 'flex';
+            document.getElementById('removePhotoBtn').style.display = 'none';
+            document.getElementById('avatarUpload').value = '';
+
+            // Update preview
+            if (avatar === 'default') {
+                document.getElementById('settingsAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+            } else {
+                document.getElementById('settingsAvatar').textContent = avatar;
+            }
+
+            // Update selection UI
+            updateAvatarSelection(avatar === 'default' ? currentUser.name.charAt(0).toUpperCase() : avatar);
+        }
+
+        function updateAvatarSelection(currentAvatar) {
+            document.querySelectorAll('.avatar-option').forEach(btn => {
+                btn.classList.remove('selected');
+                if (btn.textContent === currentAvatar ||
+                    (btn.classList.contains('default') && currentAvatar.length === 1 && !['😀', '😎', '🧑‍💻', '👨‍🎓', '👩‍🎓', '🦊', '🐱', '🦁'].includes(currentAvatar))) {
+                    btn.classList.add('selected');
+                }
+            });
+        }
+
+        function saveProfile() {
+            const newName = document.getElementById('editName').value.trim();
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const statusEl = document.getElementById('saveStatus');
+
+            if (!newName) {
+                showToast('⚠️', 'Nama tidak boleh kosong!');
+                return;
+            }
+
+            // Password validation
+            if (newPassword || confirmPassword) {
+                if (newPassword.length < 4) {
+                    showToast('⚠️', 'Password minimal 4 karakter!');
+                    return;
+                }
+                if (newPassword !== confirmPassword) {
+                    showToast('⚠️', 'Konfirmasi password tidak cocok!');
+                    return;
+                }
+            }
+
+            // Update user in localStorage
+            const users = JSON.parse(localStorage.getItem('tugasin_users') || '[]');
+            const userIndex = users.findIndex(u => u.id === currentUser.id);
+
+            if (userIndex !== -1) {
+                // Update name
+                users[userIndex].name = newName;
+
+                // Update avatar (photo or emoji)
+                if (uploadedPhotoData) {
+                    // Save photo
+                    users[userIndex].avatarPhoto = uploadedPhotoData;
+                    delete users[userIndex].avatarEmoji;
+                    users[userIndex].avatar = newName.charAt(0).toUpperCase();
+                } else if (selectedAvatar && selectedAvatar !== 'default') {
+                    // Emoji selected
+                    users[userIndex].avatarEmoji = selectedAvatar;
+                    users[userIndex].avatar = selectedAvatar;
+                    delete users[userIndex].avatarPhoto;
+                } else {
+                    // Default letter
+                    users[userIndex].avatar = newName.charAt(0).toUpperCase();
+                    delete users[userIndex].avatarEmoji;
+                    delete users[userIndex].avatarPhoto;
+                }
+
+                // Update password if provided
+                if (newPassword) {
+                    users[userIndex].password = newPassword;
+                }
+
+                localStorage.setItem('tugasin_users', JSON.stringify(users));
+
+                // Update current user session
+                currentUser.name = newName;
+                if (uploadedPhotoData) {
+                    currentUser.avatarPhoto = uploadedPhotoData;
+                    delete currentUser.avatarEmoji;
+                } else if (selectedAvatar && selectedAvatar !== 'default') {
+                    currentUser.avatarEmoji = selectedAvatar;
+                    currentUser.avatar = selectedAvatar;
+                    delete currentUser.avatarPhoto;
+                } else {
+                    currentUser.avatar = newName.charAt(0).toUpperCase();
+                    delete currentUser.avatarEmoji;
+                    delete currentUser.avatarPhoto;
+                }
+                localStorage.setItem('tugasin_current_user', JSON.stringify(currentUser));
+
+                // Update UI
+                document.getElementById('welcomeName').textContent = newName.split(' ')[0];
+                document.getElementById('userName').textContent = newName;
+                updateNavbarAvatar();
+
+                // Clear password fields
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmPassword').value = '';
+                uploadedPhotoData = null;
+
+                // Show success
+                statusEl.textContent = '✅ Tersimpan!';
+                setTimeout(() => { statusEl.textContent = ''; }, 3000);
+
+                showToast('✅', 'Profil berhasil diperbarui!');
+            }
+        }
+
+        // Update navbar avatar (text or image)
+        function updateNavbarAvatar() {
+            const avatarEl = document.getElementById('userAvatar');
+
+            if (currentUser.avatarPhoto) {
+                // Show photo
+                avatarEl.innerHTML = `<img src="${currentUser.avatarPhoto}" class="user-avatar-img" alt="Avatar">`;
+            } else {
+                // Show text (emoji or letter)
+                const display = currentUser.avatarEmoji || currentUser.avatar || currentUser.name.charAt(0).toUpperCase();
+                avatarEl.innerHTML = display;
+            }
+        }
+
+        function toggleDarkMode() {
+            const isDarkMode = document.getElementById('darkModeToggle').checked;
+
+            if (isDarkMode) {
+                document.body.classList.remove('light-theme');
+                document.getElementById('themeIcon').textContent = '🌙';
+                localStorage.setItem('tugasin_theme', 'dark');
+            } else {
+                document.body.classList.add('light-theme');
+                document.getElementById('themeIcon').textContent = '☀️';
+                localStorage.setItem('tugasin_theme', 'light');
+            }
+        }
+
+        function updateNotificationStatus() {
+            const statusEl = document.getElementById('notifStatus');
+            const toggleEl = document.getElementById('notifToggle');
+            const permission = checkNotificationPermission();
+
+            if (permission === 'not-supported') {
+                statusEl.textContent = '❌ Browser tidak mendukung';
+                toggleEl.checked = false;
+                toggleEl.disabled = true;
+            } else if (permission === 'granted') {
+                statusEl.textContent = '✅ Notifikasi aktif';
+                toggleEl.checked = true;
+            } else if (permission === 'denied') {
+                statusEl.textContent = '🚫 Notifikasi diblokir';
+                toggleEl.checked = false;
+            } else {
+                statusEl.textContent = '❓ Belum diminta izin';
+                toggleEl.checked = false;
+            }
+        }
+
+        function toggleNotifSetting() {
+            const isEnabled = document.getElementById('notifToggle').checked;
+
+            if (isEnabled) {
+                requestNotificationPermission();
+            } else {
+                showToast('ℹ️', 'Notifikasi dinonaktifkan');
+                localStorage.setItem('tugasin_notif_enabled', 'false');
+            }
+        }
+
+        function deleteAllTasks() {
+            if (!confirm('⚠️ Yakin ingin menghapus SEMUA tugas? Tindakan ini tidak dapat dibatalkan!')) {
+                return;
+            }
+
+            const allTasks = JSON.parse(localStorage.getItem('tugasin_tasks') || '[]');
+            const otherUserTasks = allTasks.filter(t => t.userId !== currentUser.id);
+            localStorage.setItem('tugasin_tasks', JSON.stringify(otherUserTasks));
+
+            renderTasks();
+            renderReminders();
+            renderCalendar();
+            renderUpcoming();
+            updateStats();
+            loadSettingsData();
+
+            showToast('🗑️', 'Semua tugas berhasil dihapus!');
+        }
+
+        // Close settings modal when clicking outside
+        document.getElementById('settingsModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeSettingsModal();
+            }
+        });
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('tugasin_theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                document.getElementById('themeIcon').textContent = '☀️';
+            }
+        }
+
+        // ========== SEARCH FUNCTIONALITY ==========
+        let currentSearchQuery = '';
+
+        function searchTasks() {
+            currentSearchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+            renderTasks();
+        }
+
+        // ========== EXPORT TO PDF FUNCTIONALITY ==========
+        function exportToPDF() {
+            const tasks = TaskService.getTasks();
+            if (tasks.length === 0) {
+                showToast('⚠️', 'Tidak ada tugas untuk di-export!');
+                return;
+            }
+
+            // Create printable HTML
+            const userName = currentUser ? currentUser.name : 'User';
+            const today = new Date().toLocaleDateString('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            // Sort tasks by deadline
+            const sortedTasks = [...tasks].sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+
+            const pendingTasks = sortedTasks.filter(t => !t.completed);
+            const completedTasks = sortedTasks.filter(t => t.completed);
+
+            let taskRows = '';
+
+            // Pending tasks
+            pendingTasks.forEach((task, index) => {
+                const deadline = new Date(task.deadline).toLocaleDateString('id-ID');
+                const priorityEmoji = task.priority === 'tinggi' ? '🔴' : task.priority === 'sedang' ? '🟡' : '🟢';
+                taskRows += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${task.title}</td>
+                        <td>${task.subject}</td>
+                        <td>${deadline}</td>
+                        <td>${priorityEmoji} ${task.priority}</td>
+                        <td>⏳ Pending</td>
+                    </tr>
+                `;
+            });
+
+            // Completed tasks
+            completedTasks.forEach((task, index) => {
+                const deadline = new Date(task.deadline).toLocaleDateString('id-ID');
+                const priorityEmoji = task.priority === 'tinggi' ? '🔴' : task.priority === 'sedang' ? '🟡' : '🟢';
+                taskRows += `
+                    <tr style="opacity: 0.6;">
+                        <td>${pendingTasks.length + index + 1}</td>
+                        <td style="text-decoration: line-through;">${task.title}</td>
+                        <td>${task.subject}</td>
+                        <td>${deadline}</td>
+                        <td>${priorityEmoji} ${task.priority}</td>
+                        <td>✅ Selesai</td>
+                    </tr>
+                `;
+            });
+
+            const printContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Daftar Tugas - TugasIn</title>
+                    <style>
+                        * { margin: 0; padding: 0; box-sizing: border-box; }
+                        body { 
+                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+                            padding: 40px; 
+                            color: #333;
+                        }
+                        .header { 
+                            text-align: center; 
+                            margin-bottom: 30px; 
+                            padding-bottom: 20px;
+                            border-bottom: 2px solid #2dd4bf;
+                        }
+                        .header h1 { 
+                            color: #2dd4bf; 
+                            font-size: 28px;
+                            margin-bottom: 5px;
+                        }
+                        .header p { color: #666; }
+                        .stats {
+                            display: flex;
+                            justify-content: center;
+                            gap: 30px;
+                            margin-bottom: 30px;
+                        }
+                        .stat-item {
+                            text-align: center;
+                            padding: 15px 25px;
+                            background: #f0fdfa;
+                            border-radius: 10px;
+                        }
+                        .stat-value { font-size: 24px; font-weight: bold; color: #2dd4bf; }
+                        .stat-label { font-size: 12px; color: #666; }
+                        table { 
+                            width: 100%; 
+                            border-collapse: collapse; 
+                            margin-top: 20px;
+                        }
+                        th { 
+                            background: #2dd4bf; 
+                            color: white; 
+                            padding: 12px; 
+                            text-align: left;
+                        }
+                        td { 
+                            padding: 12px; 
+                            border-bottom: 1px solid #eee; 
+                        }
+                        tr:nth-child(even) { background: #f9f9f9; }
+                        .footer { 
+                            margin-top: 40px; 
+                            text-align: center; 
+                            color: #999; 
+                            font-size: 12px;
+                        }
+                        @media print {
+                            body { padding: 20px; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>📋 TugasIn - Daftar Tugas</h1>
+                        <p>${userName} • ${today}</p>
+                    </div>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value">${tasks.length}</div>
+                            <div class="stat-label">Total Tugas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${completedTasks.length}</div>
+                            <div class="stat-label">Selesai</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${pendingTasks.length}</div>
+                            <div class="stat-label">Pending</div>
+                        </div>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Judul Tugas</th>
+                                <th>Mata Kuliah</th>
+                                <th>Deadline</th>
+                                <th>Prioritas</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${taskRows}
+                        </tbody>
+                    </table>
+
+                    <div class="footer">
+                        <p>Diekspor dari TugasIn • Platform Manajemen Tugas Kuliah</p>
+                        <p>Dibuat oleh Ferdiyansyah Pratama Putra - 241110117</p>
+                    </div>
+                </body>
+                </html>
+            `;
+
+            // Open print dialog
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(printContent);
+            printWindow.document.close();
+            printWindow.focus();
+
+            setTimeout(() => {
+                printWindow.print();
+            }, 250);
+
+            showToast('📄', 'Membuka dialog print/PDF...');
+        }
+
+        // ========== BROWSER NOTIFICATIONS ==========
+        function checkNotificationPermission() {
+            if (!('Notification' in window)) {
+                return 'not-supported';
+            }
+            return Notification.permission;
+        }
+
+        function showNotificationBanner() {
+            const permission = checkNotificationPermission();
+            const banner = document.getElementById('notificationBanner');
+            const dismissed = localStorage.getItem('tugasin_notif_dismissed');
+
+            if (permission === 'default' && !dismissed) {
+                banner.classList.add('show');
+            }
+        }
+
+        function dismissNotificationBanner() {
+            document.getElementById('notificationBanner').classList.remove('show');
+            localStorage.setItem('tugasin_notif_dismissed', 'true');
+        }
+
+        function requestNotificationPermission() {
+            if (!('Notification' in window)) {
+                showToast('⚠️', 'Browser tidak mendukung notifikasi');
+                return;
+            }
+
+            Notification.requestPermission().then(permission => {
+                document.getElementById('notificationBanner').classList.remove('show');
+
+                if (permission === 'granted') {
+                    showToast('🔔', 'Notifikasi berhasil diaktifkan!');
+                    localStorage.setItem('tugasin_notif_enabled', 'true');
+
+                    // Show test notification
+                    new Notification('TugasIn 📋', {
+                        body: 'Notifikasi berhasil diaktifkan! Kamu akan mendapat pengingat saat deadline mendekat.',
+                        icon: 'favicon.png'
+                    });
+
+                    // Start checking for deadline reminders
+                    checkDeadlineReminders();
+                } else {
+                    showToast('⚠️', 'Notifikasi tidak diizinkan');
+                }
+            });
+        }
+
+        function toggleNotifications() {
+            const permission = checkNotificationPermission();
+
+            if (permission === 'not-supported') {
+                showToast('⚠️', 'Browser tidak mendukung notifikasi');
+                return;
+            }
+
+            if (permission === 'granted') {
+                // Show upcoming deadline tasks
+                const tasks = TaskService.getTasks().filter(t => !t.completed);
+                const upcoming = tasks.filter(t => {
+                    const deadline = new Date(t.deadline);
+                    const today = new Date();
+                    const diffDays = Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
+                    return diffDays >= 0 && diffDays <= 3;
+                });
+
+                if (upcoming.length > 0) {
+                    new Notification(`📋 TugasIn - ${upcoming.length} Tugas Mendesak`, {
+                        body: upcoming.map(t => `• ${t.title} (${t.subject})`).join('\n'),
+                        icon: 'favicon.png'
+                    });
+                } else {
+                    showToast('✅', 'Tidak ada tugas mendesak dalam 3 hari ke depan');
+                }
+            } else if (permission === 'default') {
+                requestNotificationPermission();
+            } else {
+                showToast('⚠️', 'Notifikasi diblokir. Aktifkan di pengaturan browser.');
+            }
+        }
+
+        function checkDeadlineReminders() {
+            const permission = checkNotificationPermission();
+            if (permission !== 'granted') return;
+
+            const tasks = TaskService.getTasks().filter(t => !t.completed);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            let urgentCount = 0;
+
+            tasks.forEach(task => {
+                const deadline = new Date(task.deadline);
+                deadline.setHours(0, 0, 0, 0);
+                const diffDays = Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
+
+                if (diffDays === 0) {
+                    urgentCount++;
+                } else if (diffDays === 1) {
+                    urgentCount++;
+                } else if (diffDays < 0) {
+                    urgentCount++;
+                }
+            });
+
+            // Update badge
+            const badge = document.getElementById('notifBadge');
+            if (urgentCount > 0) {
+                badge.textContent = urgentCount;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        // Check reminders periodically
+        setInterval(checkDeadlineReminders, 60000); // Every minute
+
         // Initialize
+        loadTheme();
         initDashboard();
+        showNotificationBanner();
+        checkDeadlineReminders();
+
+        // ========== Info Modal for Footer Links ==========
+        const footerInfoContent = {
+            about: {
+                title: '📋 Tentang TugasIn',
+                body: `<p><strong>TugasIn</strong> adalah platform manajemen tugas kuliah yang dirancang khusus untuk mahasiswa Indonesia.</p>
+                <p style="margin-top: 12px;"><strong>Visi:</strong> Membantu mahasiswa Indonesia meraih prestasi akademik maksimal melalui manajemen waktu yang efektif.</p>
+                <p style="margin-top: 12px;"><strong>Misi:</strong></p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li>Menyediakan tools manajemen tugas yang mudah digunakan</li>
+                    <li>Membantu mahasiswa tidak melewatkan deadline</li>
+                    <li>Meningkatkan produktivitas dan kolaborasi tim</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Tim:</strong> Dikembangkan oleh mahasiswa Universitas Mercu Buana Yogyakarta.</p>`
+            },
+            privacy: {
+                title: '🔒 Kebijakan Privasi',
+                body: `<p><strong>Kebijakan Privasi TugasIn</strong></p>
+                <p style="margin-top: 12px;">Kami menghargai privasi Anda. Berikut adalah kebijakan kami:</p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li><strong>Data yang dikumpulkan:</strong> Nama, email, dan data tugas yang Anda input.</li>
+                    <li><strong>Penggunaan data:</strong> Data hanya digunakan untuk menyediakan layanan TugasIn.</li>
+                    <li><strong>Keamanan:</strong> Data disimpan secara aman di perangkat Anda (localStorage).</li>
+                    <li><strong>Berbagi data:</strong> Kami tidak menjual atau membagikan data Anda kepada pihak ketiga.</li>
+                </ul>
+                <p style="margin-top: 12px;">Pertanyaan? Hubungi kami di <a href="mailto:privacy@tugasin.id" style="color: var(--color-primary);">privacy@tugasin.id</a></p>`
+            },
+            pricing: {
+                title: '💰 Harga',
+                body: `<p><strong>Paket TugasIn</strong></p>
+                <div style="margin-top: 16px; padding: 16px; background: rgba(59, 130, 246, 0.1); border-radius: 12px; border: 1px solid var(--color-primary);">
+                    <h4 style="color: var(--color-primary); margin-bottom: 8px;">✨ Paket Gratis (Selamanya!)</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Unlimited tugas</li>
+                        <li>Reminder deadline</li>
+                        <li>Kalender akademik</li>
+                        <li>Progress tracking</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 12px; padding: 16px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid var(--color-border);">
+                    <h4 style="margin-bottom: 8px;">🚀 Paket Pro (Coming Soon)</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Semua fitur Gratis</li>
+                        <li>Kolaborasi grup</li>
+                        <li>Sync Google Calendar</li>
+                        <li>Analytics lanjutan</li>
+                    </ul>
+                </div>`
+            },
+            blog: {
+                title: '📰 Blog',
+                body: `<p><strong>Blog TugasIn - Coming Soon!</strong></p>
+                <p style="margin-top: 12px;">Kami sedang menyiapkan konten menarik untuk Anda:</p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li>Tips produktivitas untuk mahasiswa</li>
+                    <li>Cara efektif mengerjakan tugas kelompok</li>
+                    <li>Time management untuk kuliah & organisasi</li>
+                    <li>Update fitur terbaru TugasIn</li>
+                </ul>
+                <p style="margin-top: 12px;">Stay tuned! 🎉</p>`
+            },
+            career: {
+                title: '💼 Karir',
+                body: `<p><strong>Bergabung dengan Tim TugasIn!</strong></p>
+                <p style="margin-top: 12px;">Kami selalu mencari talenta terbaik untuk bergabung. Posisi yang tersedia:</p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li><strong>Frontend Developer</strong> - React/Vue.js</li>
+                    <li><strong>Backend Developer</strong> - Node.js/Python</li>
+                    <li><strong>UI/UX Designer</strong> - Figma</li>
+                    <li><strong>Content Writer</strong> - Blog & Social Media</li>
+                </ul>
+                <p style="margin-top: 12px;">Tertarik? Kirim CV ke <a href="mailto:career@tugasin.id" style="color: var(--color-primary);">career@tugasin.id</a></p>`
+            }
+        };
+
+        function openFooterInfoModal(type) {
+            const content = footerInfoContent[type];
+            if (content) {
+                document.getElementById('footerInfoModalTitle').innerHTML = content.title;
+                document.getElementById('footerInfoModalBody').innerHTML = content.body;
+                document.getElementById('footerInfoModal').classList.add('show');
+            }
+        }
+
+        function closeFooterInfoModal() {
+            document.getElementById('footerInfoModal').classList.remove('show');
+        }
+
+        document.getElementById('footerInfoModal').addEventListener('click', function (e) {
+            if (e.target === this) closeFooterInfoModal();
+        });
     </script>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: var(--spacing-xl);">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">📋</span>
+                        <span class="logo-text">TugasIn</span>
+                    </a>
+                    <p class="footer-description">Platform manajemen tugas kuliah untuk mahasiswa Indonesia.</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Produk</h4>
+                    <ul class="footer-links">
+                        <li><a href="features.html">Fitur</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="#" onclick="openFooterInfoModal('pricing'); return false;">Harga</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Perusahaan</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="openFooterInfoModal('about'); return false;">Tentang Kami</a></li>
+                        <li><a href="#" onclick="openFooterInfoModal('blog'); return false;">Blog</a></li>
+                        <li><a href="#" onclick="openFooterInfoModal('career'); return false;">Karir</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Bantuan</h4>
+                    <ul class="footer-links">
+                        <li><a href="support.html">Pusat Bantuan</a></li>
+                        <li><a href="support.html">Kontak</a></li>
+                        <li><a href="#" onclick="openFooterInfoModal('privacy'); return false;">Privasi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TugasIn. Hak Cipta Dilindungi.</p>
+                <p>Dibuat untuk Universitas Mercu Buana Yogyakarta</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Footer Info Modal -->
+    <div class="modal-overlay" id="footerInfoModal" style="display: none;">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="footerInfoModalTitle">Informasi</h3>
+                <button class="modal-close" onclick="closeFooterInfoModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="footerInfoModalBody" style="line-height: 1.8; color: var(--color-text-muted);">
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .footer {
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            padding: var(--spacing-2xl) 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-description {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+        }
+
+        .footer-title {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .footer-links a {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+        }
+    </style>
 </body>
 
 </html>

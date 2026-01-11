@@ -7,6 +7,7 @@
     <title>Bantuan - TugasIn</title>
     <meta name="description"
         content="Dapatkan bantuan untuk TugasIn. Temukan jawaban pertanyaan umum atau hubungi tim support kami.">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -202,6 +203,170 @@
             border-radius: var(--radius-xl);
             padding: var(--spacing-xl);
         }
+
+        /* Help Modal */
+        .help-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .help-modal.show {
+            display: flex;
+        }
+
+        .help-modal-content {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .help-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-lg) var(--spacing-xl);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .help-modal-header h2 {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: var(--font-size-xl);
+        }
+
+        .help-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-text-muted);
+            transition: color 0.2s;
+        }
+
+        .help-modal-close:hover {
+            color: var(--color-text);
+        }
+
+        .help-modal-body {
+            padding: var(--spacing-xl);
+        }
+
+        .help-modal-body h3 {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-primary);
+        }
+
+        .help-modal-body p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+            color: var(--color-text-secondary);
+        }
+
+        .help-modal-body ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .help-modal-body li {
+            padding: var(--spacing-sm) 0;
+            padding-left: 25px;
+            position: relative;
+            color: var(--color-text-secondary);
+        }
+
+        .help-modal-body li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .video-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .video-item:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-3px);
+        }
+
+        .video-item .video-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .video-item h4 {
+            font-size: var(--font-size-sm);
+            margin-bottom: 5px;
+        }
+
+        .video-item p {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            margin: 0;
+        }
+
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            background: #5865F2;
+            color: white;
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: var(--font-size-base);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .discord-btn:hover {
+            background: #4752C4;
+            transform: translateY(-2px);
+        }
+
+        .help-card {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -219,6 +384,7 @@
                     <li><a href="features.html">Fitur</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
                     <li><a href="support.html" class="active">Bantuan</a></li>
+                    <li><a href="developer.html">Developer</a></li>
                 </ul>
                 <div class="nav-actions">
                     <a href="login.html" class="btn btn-secondary">Masuk</a>
@@ -245,23 +411,23 @@
     <section class="quick-help">
         <div class="container">
             <div class="help-grid">
-                <div class="help-card">
+                <div class="help-card" onclick="openHelpModal('docs')">
                     <div class="help-icon">📖</div>
                     <h3 class="help-title">Dokumentasi</h3>
                     <p class="help-description">Panduan lengkap penggunaan TugasIn</p>
-                    <a href="#" class="help-link">Lihat Docs →</a>
+                    <span class="help-link">Lihat Docs →</span>
                 </div>
-                <div class="help-card">
+                <div class="help-card" onclick="openHelpModal('discord')">
                     <div class="help-icon">💬</div>
                     <h3 class="help-title">Komunitas</h3>
                     <p class="help-description">Diskusi dengan pengguna lain</p>
-                    <a href="#" class="help-link">Gabung Discord →</a>
+                    <span class="help-link">Gabung Discord →</span>
                 </div>
-                <div class="help-card">
+                <div class="help-card" onclick="openHelpModal('video')">
                     <div class="help-icon">🎥</div>
                     <h3 class="help-title">Video Tutorial</h3>
                     <p class="help-description">Belajar lewat video step-by-step</p>
-                    <a href="#" class="help-link">Tonton Video →</a>
+                    <span class="help-link">Tonton Video →</span>
                 </div>
                 <div class="help-card">
                     <div class="help-icon">📧</div>
@@ -443,6 +609,14 @@
                     </div>
                 </div>
                 <div class="contact-form-wrapper">
+                    <div id="contactSuccess" style="display: none; text-align: center; padding: 40px 20px;">
+                        <div style="font-size: 4rem; margin-bottom: 20px;">✅</div>
+                        <h3 style="margin-bottom: 10px; color: var(--color-primary);">Pesan Terkirim!</h3>
+                        <p style="color: var(--color-text-muted);">Terima kasih telah menghubungi kami. Tim support akan
+                            membalas dalam 24 jam.</p>
+                        <button onclick="resetContactForm()" class="btn btn-secondary" style="margin-top: 20px;">Kirim
+                            Pesan Lain</button>
+                    </div>
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
                             <label for="name" class="form-label">Nama</label>
@@ -469,8 +643,9 @@
                             <textarea id="message" name="message" class="form-input form-textarea" rows="5"
                                 placeholder="Ceritakan bagaimana kami bisa membantu..." required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">
-                            Kirim Pesan
+                        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                            <span id="submitText">Kirim Pesan</span>
+                            <span id="submitLoading" style="display: none;">⏳ Mengirim...</span>
                             <span class="btn-icon">→</span>
                         </button>
                     </form>
@@ -495,15 +670,15 @@
                     <ul class="footer-links">
                         <li><a href="features.html">Fitur</a></li>
                         <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="#">Harga</a></li>
+                        <li><a href="#" onclick="openInfoModal('pricing'); return false;">Harga</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4 class="footer-title">Perusahaan</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Tentang Kami</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Karir</a></li>
+                        <li><a href="#" onclick="openInfoModal('about'); return false;">Tentang Kami</a></li>
+                        <li><a href="#" onclick="openInfoModal('blog'); return false;">Blog</a></li>
+                        <li><a href="#" onclick="openInfoModal('career'); return false;">Karir</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -511,7 +686,7 @@
                     <ul class="footer-links">
                         <li><a href="support.html">Pusat Bantuan</a></li>
                         <li><a href="support.html">Kontak</a></li>
-                        <li><a href="#">Privasi</a></li>
+                        <li><a href="#" onclick="openInfoModal('privacy'); return false;">Privasi</a></li>
                     </ul>
                 </div>
             </div>
@@ -522,11 +697,391 @@
         </div>
     </footer>
 
+    <!-- Help Modal -->
+    <div class="help-modal" id="helpModal">
+        <div class="help-modal-content">
+            <div class="help-modal-header">
+                <h2 id="helpModalTitle">📖 Dokumentasi</h2>
+                <button class="help-modal-close" onclick="closeHelpModal()">×</button>
+            </div>
+            <div class="help-modal-body" id="helpModalBody">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script>
         lucide.createIcons();
         twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
+
+        // Help Modal Content
+        const helpContent = {
+            docs: {
+                title: '📖 Dokumentasi TugasIn',
+                content: `
+                    <h3>🚀 Memulai</h3>
+                    <p>Selamat datang di TugasIn! Berikut panduan lengkap untuk memaksimalkan penggunaan aplikasi manajemen tugas kuliah ini.</p>
+                    
+                    <h3>📝 Mengelola Tugas</h3>
+                    <ul>
+                        <li><strong>Tambah Tugas:</strong> Isi judul, mata kuliah, deadline, dan prioritas, lalu klik "Tambah"</li>
+                        <li><strong>Edit Tugas:</strong> Klik ikon pensil ✏️ pada tugas untuk mengedit</li>
+                        <li><strong>Hapus Tugas:</strong> Klik ikon tempat sampah 🗑️ untuk menghapus</li>
+                        <li><strong>Selesaikan Tugas:</strong> Klik checkbox di samping tugas untuk menandai selesai</li>
+                    </ul>
+                    
+                    <h3>📅 Fitur Kalender</h3>
+                    <ul>
+                        <li>Lihat semua deadline dalam tampilan kalender bulanan</li>
+                        <li>Tanggal dengan tugas ditandai dengan warna khusus</li>
+                        <li>Navigasi antar bulan dengan tombol panah</li>
+                    </ul>
+                    
+                    <h3>🔔 Notifikasi & Reminder</h3>
+                    <ul>
+                        <li>Aktifkan notifikasi browser untuk menerima pengingat</li>
+                        <li>Reminder otomatis saat deadline mendekat (H-3, H-1, Hari H)</li>
+                        <li>Badge merah menunjukkan jumlah tugas yang mendesak</li>
+                    </ul>
+                    
+                    <h3>🔍 Fitur Pencarian & Filter</h3>
+                    <ul>
+                        <li>Gunakan kotak pencarian untuk mencari tugas berdasarkan judul atau mata kuliah</li>
+                        <li>Filter tugas: Semua, Aktif, Selesai, Prioritas Tinggi</li>
+                    </ul>
+                    
+                    <h3>📄 Export PDF</h3>
+                    <ul>
+                        <li>Klik tombol "Export" untuk membuat laporan PDF</li>
+                        <li>PDF berisi daftar tugas lengkap dengan statistik</li>
+                    </ul>
+                `
+            },
+            discord: {
+                title: '💬 Komunitas Discord',
+                content: `
+                    <h3>Bergabung dengan Komunitas TugasIn!</h3>
+                    <p>Diskusikan tips produktivitas, bagikan pengalaman, dan dapatkan bantuan dari sesama pengguna TugasIn.</p>
+                    
+                    <h3>Yang Bisa Kamu Dapatkan:</h3>
+                    <ul>
+                        <li>Diskusi dengan mahasiswa dari berbagai kampus</li>
+                        <li>Tips mengelola tugas dan waktu dengan efektif</li>
+                        <li>Update fitur terbaru dari tim TugasIn</li>
+                        <li>Bantuan teknis dari komunitas</li>
+                        <li>Event dan challenge produktivitas</li>
+                    </ul>
+                    
+                    <h3>Channel Tersedia:</h3>
+                    <ul>
+                        <li><strong>#general</strong> - Diskusi umum</li>
+                        <li><strong>#tips-tricks</strong> - Tips produktivitas</li>
+                        <li><strong>#bantuan</strong> - Tanya jawab teknis</li>
+                        <li><strong>#showcase</strong> - Pamerkan pencapaianmu</li>
+                        <li><strong>#saran-fitur</strong> - Usulan fitur baru</li>
+                    </ul>
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                        <a href="https://discord.gg/tugasin" target="_blank" class="discord-btn">
+                            💬 Gabung Discord Server
+                        </a>
+                        <p style="margin-top: 15px; font-size: 12px; color: var(--color-text-muted);">
+                            *Link akan membuka Discord di tab baru
+                        </p>
+                    </div>
+                `
+            },
+            video: {
+                title: '🎥 Video Tutorial',
+                content: `
+                    <h3>Belajar Lewat Video</h3>
+                    <p>Tonton video tutorial step-by-step untuk menguasai semua fitur TugasIn dengan mudah.</p>
+                    
+                    <div class="video-grid">
+                        <div class="video-item" onclick="playVideo('intro')">
+                            <div class="video-icon">🎬</div>
+                            <h4>Pengenalan TugasIn</h4>
+                            <p>3 menit</p>
+                        </div>
+                        <div class="video-item" onclick="playVideo('tasks')">
+                            <div class="video-icon">📝</div>
+                            <h4>Mengelola Tugas</h4>
+                            <p>5 menit</p>
+                        </div>
+                        <div class="video-item" onclick="playVideo('calendar')">
+                            <div class="video-icon">📅</div>
+                            <h4>Menggunakan Kalender</h4>
+                            <p>4 menit</p>
+                        </div>
+                        <div class="video-item" onclick="playVideo('notifications')">
+                            <div class="video-icon">🔔</div>
+                            <h4>Setup Notifikasi</h4>
+                            <p>3 menit</p>
+                        </div>
+                        <div class="video-item" onclick="playVideo('tips')">
+                            <div class="video-icon">💡</div>
+                            <h4>Tips Produktivitas</h4>
+                            <p>7 menit</p>
+                        </div>
+                        <div class="video-item" onclick="playVideo('export')">
+                            <div class="video-icon">📄</div>
+                            <h4>Export & Sharing</h4>
+                            <p>4 menit</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px; text-align: center;">
+                        <a href="https://www.youtube.com/@TugasIn" target="_blank" class="btn btn-primary">
+                            📺 Lihat Semua Video di YouTube
+                        </a>
+                    </div>
+                `
+            }
+        };
+
+        function openHelpModal(type) {
+            const modal = document.getElementById('helpModal');
+            const title = document.getElementById('helpModalTitle');
+            const body = document.getElementById('helpModalBody');
+
+            if (helpContent[type]) {
+                title.innerHTML = helpContent[type].title;
+                body.innerHTML = helpContent[type].content;
+            }
+
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeHelpModal() {
+            document.getElementById('helpModal').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function playVideo(videoId) {
+            const videoNames = {
+                'intro': 'Pengenalan TugasIn',
+                'tasks': 'Mengelola Tugas',
+                'calendar': 'Menggunakan Kalender',
+                'notifications': 'Setup Notifikasi',
+                'tips': 'Tips Produktivitas',
+                'export': 'Export & Sharing'
+            };
+            alert('🎬 Video "' + videoNames[videoId] + '" akan segera tersedia!\n\nKami sedang mempersiapkan konten video tutorial yang berkualitas untuk kamu.');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('helpModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeHelpModal();
+            }
+        });
+
+        // Close with Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeHelpModal();
+            }
+        });
+
+        // Contact Form Handler
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Show loading
+            document.getElementById('submitText').style.display = 'none';
+            document.getElementById('submitLoading').style.display = 'inline';
+            document.getElementById('submitBtn').disabled = true;
+
+            // Simulate sending (in real app, this would be an API call)
+            setTimeout(function () {
+                // Hide form, show success
+                document.getElementById('contactForm').style.display = 'none';
+                document.getElementById('contactSuccess').style.display = 'block';
+
+                // Reset loading state
+                document.getElementById('submitText').style.display = 'inline';
+                document.getElementById('submitLoading').style.display = 'none';
+                document.getElementById('submitBtn').disabled = false;
+            }, 1500);
+        });
+
+        function resetContactForm() {
+            document.getElementById('contactForm').style.display = 'block';
+            document.getElementById('contactSuccess').style.display = 'none';
+            document.getElementById('contactForm').reset();
+        }
+
+        // ========== Info Modal for Footer Links ==========
+        const infoContent = {
+            about: {
+                title: '📋 Tentang TugasIn',
+                body: `<p><strong>TugasIn</strong> adalah platform manajemen tugas kuliah yang dirancang khusus untuk mahasiswa Indonesia.</p>
+                <p style="margin-top: 12px;"><strong>Visi:</strong> Membantu mahasiswa Indonesia meraih prestasi akademik maksimal melalui manajemen waktu yang efektif.</p>
+                <p style="margin-top: 12px;"><strong>Misi:</strong></p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li>Menyediakan tools manajemen tugas yang mudah digunakan</li>
+                    <li>Membantu mahasiswa tidak melewatkan deadline</li>
+                    <li>Meningkatkan produktivitas dan kolaborasi tim</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Tim:</strong> Dikembangkan oleh mahasiswa Universitas Mercu Buana Yogyakarta.</p>`
+            },
+            privacy: {
+                title: '🔒 Kebijakan Privasi',
+                body: `<p><strong>Kebijakan Privasi TugasIn</strong></p>
+                <p style="margin-top: 12px;">Kami menghargai privasi Anda. Berikut adalah kebijakan kami:</p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li><strong>Data yang dikumpulkan:</strong> Nama, email, dan data tugas yang Anda input.</li>
+                    <li><strong>Penggunaan data:</strong> Data hanya digunakan untuk menyediakan layanan TugasIn.</li>
+                    <li><strong>Keamanan:</strong> Data disimpan secara aman di perangkat Anda (localStorage).</li>
+                    <li><strong>Berbagi data:</strong> Kami tidak menjual atau membagikan data Anda kepada pihak ketiga.</li>
+                </ul>
+                <p style="margin-top: 12px;">Pertanyaan? Hubungi kami di <a href="mailto:privacy@tugasin.id" style="color: var(--color-primary);">privacy@tugasin.id</a></p>`
+            },
+            pricing: {
+                title: '💰 Harga',
+                body: `<p><strong>Paket TugasIn</strong></p>
+                <div style="margin-top: 16px; padding: 16px; background: rgba(59, 130, 246, 0.1); border-radius: 12px; border: 1px solid var(--color-primary);">
+                    <h4 style="color: var(--color-primary); margin-bottom: 8px;">✨ Paket Gratis (Selamanya!)</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Unlimited tugas</li>
+                        <li>Reminder deadline</li>
+                        <li>Kalender akademik</li>
+                        <li>Progress tracking</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 12px; padding: 16px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid var(--color-border);">
+                    <h4 style="margin-bottom: 8px;">🚀 Paket Pro (Coming Soon)</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Semua fitur Gratis</li>
+                        <li>Kolaborasi grup</li>
+                        <li>Sync Google Calendar</li>
+                        <li>Analytics lanjutan</li>
+                    </ul>
+                </div>`
+            },
+            blog: {
+                title: '📰 Blog',
+                body: `<p><strong>Blog TugasIn - Coming Soon!</strong></p>
+                <p style="margin-top: 12px;">Kami sedang menyiapkan konten menarik untuk Anda:</p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li>Tips produktivitas untuk mahasiswa</li>
+                    <li>Cara efektif mengerjakan tugas kelompok</li>
+                    <li>Time management untuk kuliah & organisasi</li>
+                    <li>Update fitur terbaru TugasIn</li>
+                </ul>
+                <p style="margin-top: 12px;">Stay tuned! 🎉</p>`
+            },
+            career: {
+                title: '💼 Karir',
+                body: `<p><strong>Bergabung dengan Tim TugasIn!</strong></p>
+                <p style="margin-top: 12px;">Kami selalu mencari talenta terbaik untuk bergabung. Posisi yang tersedia:</p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li><strong>Frontend Developer</strong> - React/Vue.js</li>
+                    <li><strong>Backend Developer</strong> - Node.js/Python</li>
+                    <li><strong>UI/UX Designer</strong> - Figma</li>
+                    <li><strong>Content Writer</strong> - Blog & Social Media</li>
+                </ul>
+                <p style="margin-top: 12px;">Tertarik? Kirim CV ke <a href="mailto:career@tugasin.id" style="color: var(--color-primary);">career@tugasin.id</a></p>`
+            }
+        };
+
+        function openInfoModal(type) {
+            const content = infoContent[type];
+            if (content) {
+                document.getElementById('infoModalTitle').innerHTML = content.title;
+                document.getElementById('infoModalBody').innerHTML = content.body;
+                document.getElementById('infoModal').classList.add('show');
+            }
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').classList.remove('show');
+        }
+
+        document.getElementById('infoModal').addEventListener('click', function (e) {
+            if (e.target === this) closeInfoModal();
+        });
     </script>
+
+    <!-- Info Modal -->
+    <div class="modal-overlay" id="infoModal" style="display: none;">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="infoModalTitle">Informasi</h3>
+                <button class="modal-close" onclick="closeInfoModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="infoModalBody" style="line-height: 1.8; color: var(--color-text-muted);">
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.show {
+            display: flex !important;
+        }
+
+        .modal-content {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 24px;
+            width: 90%;
+            max-width: 500px;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--color-text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: var(--color-text);
+        }
+    </style>
 </body>
 
 </html>
